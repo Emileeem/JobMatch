@@ -1,8 +1,9 @@
-body{
+body {
   background-color: #E0E1DD;
+  font-family: "Imprima", sans-serif;
 }
 
-.logo{
+.logo {
   position: absolute;
   left: 5%;
   top: 4.5%;
@@ -13,4 +14,33 @@ body{
   left: 5%;
   top: 26%;
   width: 1.7%;
+}
+
+.nome {
+  position: absolute;
+  left: 9%;
+  top: 28%;
+  width: 30%;
+}
+
+.paragraph {
+  font-family: "Imprima", sans-serif;
+  color: #0D1B2A;
+  position: absolute;
+  left: 10.2%;
+  top: calc(35% + 30px);
+  width: 30%;
+  line-height: 1.5;
+  font-size: 30px;
+  text-align: justify;
+}
+
+.button {
+  background-color: #0D1B2A;
+  top: calc(65% + 30px);
+  position: absolute;
+  left: 10.2%;
+  width: 330px;
+  height: 80px;
+  border-radius: 50px;
 }

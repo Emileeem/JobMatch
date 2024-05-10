@@ -3,15 +3,18 @@
   justify-content: space-between !important;
   align-items: flex-start;
   position: fixed;
-  top: 3.7%; 
-  width: 40%; 
+  top: 3.6%; 
+  width: 60%; 
   left: 50%; 
   transform: translateX(-50%); 
+  color: #0D1B2A;
 }
 
 .navItem {
   padding: 8px;
   font-size: 17px;
+  font-family: "Imprima", sans-serif;
+  color: #0D1B2A;
 }
 
 .exit{
