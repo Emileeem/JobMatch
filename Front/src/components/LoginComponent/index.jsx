@@ -25,12 +25,12 @@ function LoginComponent() {
                         <h1> Novo Login </h1>
                         <hr className={styles.linha} />
                     </div>
-                    <button className={styles.button}> Criar Conta </button>
+                    <a className={styles.button} href='/register'> Criar Conta </a>
                 </div>
 
                 <div className={styles.logar}>
                     <h1> Faça o seu Login </h1>
-                    <input type="text" placeholder="| CPF" className={styles.input1} />
+                    <input type="number" placeholder="| CPF" className={styles.input1} />
                     <div className={styles.inputDiv}>
 
                         <input type={inputType} placeholder="| ******" className={styles.input2} />
@@ -41,6 +41,13 @@ function LoginComponent() {
                             />
                     </div>
                     <button className={styles.entrar}>Entrar</button>
+                    <br/>
+                    <b className={styles.cadastro2}>
+                        Não tem uma conta?
+                    </b>
+                    <a className={styles.cadastro} href='/register'>
+                     Cadastre-se
+                    </a>
                 </div>
             </div>
         </>
