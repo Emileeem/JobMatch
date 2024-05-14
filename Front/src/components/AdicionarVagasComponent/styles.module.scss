@@ -17,15 +17,31 @@
     width: 58vw;
     height: 58vh;
     border-radius: 4%;
+    padding: 20px; /* Adiciona um espaçamento interno */
     display: flex;
-    flex-direction: column; 
-    justify-content: flex-start; 
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
+    color: #0D1B2A; /* Cor do texto dentro do card */
   }
   
-  h1 {
-    color: #0D1B2A;
-    margin-top: 5%; 
-    font-size: 48px !important;
+  .h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .p {
+    margin: 5px 0;
+  }
+  
+  .input[type="text"],
+  .input[type="float"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    box-sizing: border-box; /* Evita que o padding afete a largura total */
   }
   
