@@ -35,18 +35,7 @@ function HomeComponent() {
 
             <div className={styles.button}></div>
 
-            <div className="App">
-                <Carousel breakPoints={breakPoints}>
-                    <Item>One</Item>
-                    <Item>Two</Item>
-                    <Item>Three</Item>
-                    <Item>Four</Item>
-                    <Item>Five</Item>
-                    <Item>Six</Item>
-                    <Item>Seven</Item>
-                    <Item>Eight</Item>
-                </Carousel>
-            </div>
+            
         </>
     );
 }

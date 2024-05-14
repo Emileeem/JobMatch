@@ -1,0 +1,31 @@
+.logo {
+    position: absolute;
+    left: 5%;
+    top: 4.5%;
+}
+
+.img {
+    position: absolute;
+    left: 5%;
+    top: 26%;
+    width: 1.7%;
+}
+
+.card {
+    position: relative;
+    background-color: #415a77a2;
+    width: 58vw;
+    height: 58vh;
+    border-radius: 4%;
+    display: flex;
+    flex-direction: column; 
+    justify-content: flex-start; 
+    align-items: center;
+  }
+  
+  h1 {
+    color: #0D1B2A;
+    margin-top: 5%; 
+    font-size: 48px !important;
+  }
+  

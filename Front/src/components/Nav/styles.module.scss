@@ -15,6 +15,12 @@
   font-size: 17px;
   font-family: "Imprima", sans-serif;
   color: #0D1B2A;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.navItem:hover {
+  color: #778da9; 
 }
 
 .exit{
@@ -23,3 +29,11 @@
   width: 3%;
   left: 90%; 
 }
+
+.add{
+  width: 2.9vw;
+}
+
+
+
+
