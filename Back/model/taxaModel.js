@@ -1,29 +1,35 @@
-const sequelize = require('../config/sequelize');
-const { DataTypes } = require('sequelize');
+import { Sequelize } from "sequelize";
+import db from "../startup/db.js";
 
-const Taxa = sequelize.define('Taxa', {
+export default db.define("Taxa", {
+    IDTaxa: {
+        type: Sequelize.INTEGER.UNSIGNED,
+        primaryKey: true,
+        autoIncrement: true,
+        allowNull: false,
+    },
     Titulo: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: false,
     },
     Descricao: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: false,
     },
     DataInicio: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         allowNull: false,
     },
     DataTermino: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         allowNull: false,
     },
     Valor: {
-        type: DataTypes.DOUBLE,
+        type: Sequelize.DOUBLE,
         allowNull: false,
     },
     QtdTaxa: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         allowNull: false,
     },
     IDEndereco: {

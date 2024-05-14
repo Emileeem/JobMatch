@@ -1,17 +1,12 @@
-const express = require('express');
-const router = require('./startup/routes');
+import express from "express";
+import routes from "./startup/routes.js";
+import db from "./startup/db.js";
+
 const app = express();
 
-require('./config/sequelize')();
-const cors = require('cors');
+app.use(express.json());
+app.use(routes);
 
-app.use(cors({
-    origin: '*'
-}));
+db.sync(() => console.log(`Banco de dados conectado: ${process.env.DB_NAME}`));
 
-// require('./config/routes')(app);
-
-const port = 8080;
-const server = app.listen(port, () => console.log(`Listening on port ${port}`));
-
-module.exports = server;
+app.listen(3000, () => console.log("Servidor iniciado na porta 3000"));

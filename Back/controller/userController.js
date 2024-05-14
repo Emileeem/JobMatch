@@ -23,18 +23,18 @@ class UserController {
     }
 
     static async create(req, res) {
-        const { name, email, cpf, senha, dataNascimento } = req.body;
+        const { nome, email, cpf, senha, dataNascimento } = req.body;
 
-        if (!name || !email || !cpf || !senha || !dataNascimento)
+        if (!nome || !email || !cpf || !senha || !dataNascimento)
             return
 
         const obj =
         {
-            Nome: Nome,
-            Email: Email,
-            Cpf: Cpf,
-            Senha: Senha,
-            DataNascimento: DataNascimento,
+            Nome: nome,
+            Email: email,
+            Cpf: cpf,
+            Senha: senha,
+            DataNascimento: dataNascimento,
         }
 
         try {
@@ -50,19 +50,6 @@ class UserController {
         const { id } = req.params;
         if (!id)
             return res.status(400).send({ message: "No id provider" })
-
-        const person = req.body;
-        if (!person.int)
-            return res.status(400).send({ message: "No salary provider" })
-        try {
-            const newPerson = await User.findByIdAndUpdate(
-                id,
-                { salary: person.int }
-            );
-            return res.status(201).send(newPerson);
-        } catch (error) {
-            return res.status(500).send({ error: error });
-        }
     }
 
     static async delete(req, res) {
