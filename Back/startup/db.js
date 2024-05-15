@@ -1,13 +1,16 @@
-const { Sequelize } = require('sequelize');
+import { Sequelize } from "sequelize";
+import dotenv from "dotenv";
 
-const sequelize = new Sequelize('JobMatch', 'JobMatch', 'JobMatch*', {
-    host: '127.0.0.2',
-    dialect: 'mysqL'
-  });
+dotenv.config();
 
-try {
-    await sequelize.authenticate();
-    console.log('Connection has been established successfully.');
-} catch (error) {
-    console.error('Unable to connect to the database:', error);
-}
+const dbName = process.env.DB_NAME;
+const dbUser = process.env.DB_USER;
+const dbHost = process.env.DB_HOST;
+const dbPassword = process.env.DB_PASSWORD;
+
+const sequelize = new Sequelize(dbName, dbUser, dbPassword, {
+  dialect: "mysql",
+  host: dbHost,
+});
+
+export default sequelize; //exportar
