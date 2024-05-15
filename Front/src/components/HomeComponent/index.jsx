@@ -3,18 +3,12 @@ import Image from "react-bootstrap/Image";
 import decoration1 from "./decoration1.png";
 import logo from "./logosemname.png";
 import nome from "./nome.png";
-import { useState } from 'react';
-import ReactDOM from 'react-dom'
-import Carousel from 'react-bootstrap/Carousel';
-import Item from "./Item";
-import "./styles.css";
 
-const breakPoints = [
-    { width: 1, itemsToShow: 1 },
-    { width: 550, itemsToShow: 2 },
-    { width: 768, itemsToShow: 3 },
-    { width: 1200, itemsToShow: 4 },
-];
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import Star from '../Star';
+
+const items = [...Array(5).keys()];
 
 function HomeComponent() {
     const [index, setIndex] = useState(0);
@@ -23,6 +17,11 @@ function HomeComponent() {
         setIndex(selectedIndex);
     };
 
+    const [activeIndex, setActiveIndex] = useState();
+
+    const onClickStar = (index) => {
+        setActiveIndex((oldState) => (oldState === index ? undefined : index));
+    };
 
     return (
         <>
@@ -35,13 +34,27 @@ function HomeComponent() {
 
             <div className={styles.button}></div>
 
-            
+            <div className="d-flex flex-column align-items-start">
+                <Link to="/home">
+                    <Image className={styles.logo} src={logo} />
+                </Link>
+                <Image className={styles.img} src={decoration1} />
+                <div className={styles.alinha}>
+                    <b className={styles.label}>Barman</b>
+                    <div className="container">
+                        {items.map((index) => (
+                            <Star
+                                onClick={() => onClickStar(index)}
+                                key={`star_${index}`}
+                                isActive={index <= (activeIndex ?? -1)}
+                            />
+                        ))}
+                    </div>
+                    <div className={styles.card}></div>
+                </div>
+            </div>
         </>
     );
 }
 
 export default HomeComponent;
-
-
-
-

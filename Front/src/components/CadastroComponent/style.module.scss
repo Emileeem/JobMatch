@@ -1,10 +1,10 @@
 body {
-    background-image: url(../../Img/cadastroBackground.png);
+    // background-image: url(../../Img/cadastroBackground.png);
     background-repeat: no-repeat;
     background-size: cover;
     font-family: "Imprima", sans-serif;
-    color: white;
-    background-color: #0D1B2A;
+    // color: white;
+    // background-color: #0D1B2A;
 }
 
 .body {
@@ -43,6 +43,7 @@ body {
     flex-wrap: wrap;
     align-items: center;
     justify-content: flex-start;
+    color: white;
 }
 
 .input {
@@ -52,6 +53,7 @@ body {
     border: 0px solid;
     padding: 20px 20px;
     min-width: 170px;
+    color: white;
 }
 
 ::-webkit-input-placeholder {
@@ -80,8 +82,8 @@ body {
 @media (width <= 1000px)
 {
     body {
-        background-color: #0D1B2A;
-        background-image: none;
+        // background-color: #0D1B2A;
+        // background-image: none;
     }
 
     .body {

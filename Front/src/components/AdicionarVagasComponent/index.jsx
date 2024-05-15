@@ -34,13 +34,43 @@ function AdicionarVagasComponent(props) {
     }
 
     function formValid() {
-        if (text.trim() === "") {
+        if (titulo.trim() === "") {
+            setMessage("O campo não pode estar vazio.");
+            setShow(true);
+            setVariant("danger");
+            return false;
+        }
+        if (descricao.trim() === "") {
+            setMessage("O campo não pode estar vazio.");
+            setShow(true);
+            setVariant("danger");
+            return false;
+        }
+        if (dataInicio.trim() === "") {
+            setMessage("O campo não pode estar vazio.");
+            setShow(true);
+            setVariant("danger");
+            return false;
+        }
+        if (dataTermino.trim() === "") {
+            setMessage("O campo não pode estar vazio.");
+            setShow(true);
+            setVariant("danger");
+            return false;
+        }
+        if (valor.trim() === "") {
             setMessage("O campo não pode estar vazio.");
             setShow(true);
             setVariant("danger");
             return false;
         }
 
+        if (quantidadedePessoas.trim() === "") {
+            setMessage("O campo não pode estar vazio.");
+            setShow(true);
+            setVariant("danger");
+            return false;
+        }
         if (!descricao.trim()) {
             setMessage("Sua descrição deve ser maior");
             setShow(true);
