@@ -1,5 +1,5 @@
-import { Sequelize } from "sequelize";
-import db from "../startup/db.js";
+const Sequelize = require("sequelize");
+const db = require("../startup/db.js").default;
 
 export default db.define("Taxa", {
     IDTaxa: {

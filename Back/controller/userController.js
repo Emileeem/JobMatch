@@ -1,5 +1,5 @@
-const User = require('../model/userModel');
-import Endereco from '../model/enderecoModel'; 
+const User = require('../model/userModel').default;
+const Endereco = require('../model/enderecoModel').default;
 
 class UserController {
 
