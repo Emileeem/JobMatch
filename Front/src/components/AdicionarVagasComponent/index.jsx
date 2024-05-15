@@ -4,8 +4,52 @@ import decoration1 from './decoration1.png';
 import logo from './logosemname.png';
 import Nav from '../Nav';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import React from "react";
+import axios from "axios";
 
-function AdicionarVagasComponent() {
+function AdicionarVagasComponent(props) {
+    const [titulo, setTitulo] = useState("");
+    const [descricao, setDescricao] = useState("");
+    const [dataInicio, setDataInicio] = useState("");
+    const [dataTermino, setDataTermino] = useState("");
+    const [valor, setValor] = useState("");
+    const [quantidadedePessoas, setQuantidadedePessoas] = useState("");
+
+    async function handleSubmit(e) {
+        if (!formValid()) return;
+        try {
+            var res = await axios.post("http://localhost:8080/adicionarvagas", {
+                text, token: sessionStorage.getItem('token'),
+            });
+
+            setMessage(res.data.message);
+            setVariant("success");
+            setShow(true);
+            setText("");
+            window.location.reload();
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    function formValid() {
+        if (text.trim() === "") {
+            setMessage("O campo não pode estar vazio.");
+            setShow(true);
+            setVariant("danger");
+            return false;
+        }
+
+        if (!descricao.trim()) {
+            setMessage("Sua descrição deve ser maior");
+            setShow(true);
+            setVariant("danger");
+            return false;
+        }
+        return true;
+    }
+
     return (
         <>
             <Nav />
@@ -13,18 +57,35 @@ function AdicionarVagasComponent() {
                 <Image className={styles.logo} src={logo} />
             </Link>
             <Image className={styles.img} src={decoration1} />
-            <div className={styles.card}>
+            <div className={styles.card} {...props}>
                 <h1>Adicionar Vagas</h1>
-                <p>Titulo</p>
-                <input type="text" />
-                <p>Descrição</p>
-                <p>Data Início</p>
-                <p>Data Termino:</p>
-                <input type="text" />
-                <p>Valor</p>
-                <input type="float" />
-                <p>Quantidade de Pessoas</p>
-                <input type="text" />
+                <form className={styles.form}>
+                    <label className={styles.label}>
+                        Titulo
+                        <input className={styles.input} type="text" value={titulo} onChange={(e) => setTitulo(e.target.value)} />
+                    </label>
+                    <label className={styles.label}>
+                        Descrição
+                        <input className={styles.input} type="text" value={descricao} onChange={(e) => setDescricao(e.target.value)} />
+                    </label>
+                    <label className={styles.label}>
+                        Data Início
+                        <input className={styles.input} type="text" value={dataInicio} onChange={(e) => setDataInicio(e.target.value)} />
+                    </label>
+                    <label className={styles.label}>
+                        Data Termino
+                        <input className={styles.input} type="text" value={dataTermino} onChange={(e) => setDataTermino(e.target.value)} />
+                    </label>
+                    <label className={styles.label}>
+                        Valor
+                        <input className={styles.input} type="text" value={valor} onChange={(e) => setValor(e.target.value)} />
+                    </label>
+                    <label className={styles.label}>
+                        Quantidade de Pessoas
+                        <input className={styles.input} type="text" value={quantidadedePessoas} onChange={(e) => setQuantidadedePessoas(e.target.value)} />
+                    </label>
+                    <button className={styles.btn} onClick={handleSubmit} type="submit">Adicionar</button>
+                </form>
             </div>
         </>
     );
