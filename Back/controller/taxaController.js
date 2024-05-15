@@ -1,6 +1,65 @@
+// import TaxaModel from "../model/taxaModel.js";
+// const TaxaModel = require('../model/taxaModel.js');
+
+// function findAll(req, res) {
+//     TaxaModel.findAll().then((result) => res.json(result));
+// }
+
+// function findTaxa(req, res) {
+//     TaxaModel.findByPk(req.params.id).then((result) => res.json(result));
+// }
+
+// function addTaxa(req, res) {
+//     TaxaModel.create({
+//     Pais: req.body.Pais,
+//     UF: req.body.UF,
+//     Municipio: req.body.Municipio,
+//     Cep: req.body.Cep,
+//     Bairro: req.body.Bairro,
+//     Logradouro: req.body.Logradouro,
+//     Complemento: req.body.Complemento
+//   }).then((result) => res.json(result));
+
+// }
+
+// async function updateClient(req, res) {
+//   await TaxaModel.update(
+//     {
+//       Titulo: req.body.Titulo,
+//       Descricao: req.body.Descricao,
+//       DataInicio: req.body.DataInicio,
+//       DataTermino: req.body.DataTermino,
+//       Valor: req.body.Valor,
+//       QtdTaxa: req.body.QtdTaxa,
+//       IDEndereco: req.body.IDEndereco,
+//       IDUsuario: req.body.IDUsuario
+//     },
+//     {
+//       where: {
+//         id: req.params.id,
+//       },
+//     }
+//   );
+
+//   TaxaModel.findByPk(req.params.id).then((result) => res.json(result));
+// }
+
+// async function deleteClient(req, res) {
+//   await TaxaModel.destroy({
+//     where: {
+//       id: req.params.id,
+//     },
+//   });
+
+//   TaxaModel.findAll().then((result) => res.json(result));
+// }
+
+// export default { findAll, addTaxa};
+
+
 const Taxa = require('../model/taxaModel');
 
-class UserController {
+class TaxaController {
 
     static async getAllUser(req, res) {
         try {
@@ -68,4 +127,4 @@ class UserController {
 
 }
 
-module.exports = UserController
+module.exports = TaxaController

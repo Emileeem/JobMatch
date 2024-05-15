@@ -1,7 +1,8 @@
-import { Sequelize } from "sequelize";
-import db from "../startup/db.js";
+const { Sequelize } = require('sequelize');
+const db = require('../startup/db.js');
 
-export default db.define("Taxa", {
+
+module.exports = db.define("Taxa", {
     IDTaxa: {
         type: Sequelize.INTEGER.UNSIGNED,
         primaryKey: true,
@@ -34,13 +35,17 @@ export default db.define("Taxa", {
     },
     IDEndereco: {
         type: Sequelize.INTEGER,
-        references: 'Endereco',
-        referencesKey: 'IDEndereco' 
+        references: {
+            model: 'Endereco',
+            key: 'IDEndereco'
+        }
     },
     IDUsuario: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: 'Usuario',
-        referencesKey: 'IDUsuario'
+        references: {
+            model: 'Usuario',
+            key: 'IDUsuario'
+        }
     }
 });

@@ -1,9 +1,17 @@
-import express from "express";
-import endereco from "../controller/enderecoController.js";
+const express = require('express');
+const endereco = require('../routes/endereco.js');
+const taxa = require('../routes/taxa.js');
+
+// import user from "../controller/userController.js";
 
 const routes = express.Router();
 
-routes.get("/endereco", endereco.findAll);
-routes.post("/endereco/add", endereco.addAddress);
+module.exports = function (app) {
+    app
+        .use(express.json())
+        .use('/JobMatch/endereco', endereco)
+        // .use('/JobMatch/taxa', taxa)
+        // .use('/JobMatch/user', user)
+}
 
-export { routes as default };
+// module.exports { routes as default };

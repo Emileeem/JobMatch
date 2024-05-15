@@ -1,7 +1,10 @@
-import { Sequelize } from "sequelize";
-import db from "../startup/db.js";
+// import { Sequelize } from "sequelize";
+// import db from "../startup/db.js";
 
-export default db.define("Endereco", {
+const { Sequelize } = require('sequelize');
+const db = require('../startup/db.js');
+
+module.exports = db.define("Endereco", {
     IDEndereco: {
         type: Sequelize.INTEGER.UNSIGNED,
         primaryKey: true,

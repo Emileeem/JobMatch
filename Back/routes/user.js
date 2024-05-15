@@ -3,7 +3,7 @@ const UserController = require('../controller/userController');
 const router = express.Router();
 
 router
-    .get('/api/user/first', (req, res) => {
+    .get('/api/', (req, res) => {
         console.log("Hello in console");
         return
     })
