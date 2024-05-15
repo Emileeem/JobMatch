@@ -25,6 +25,16 @@ class EnderecoController {
     static async create(req, res) {
         const { pais, uf, municipio, cep, bairro, logradouro, complemento } = req.body;
 
+        console.log({
+          Pais: pais,
+          Uf: uf,
+          Municipio: municipio,
+          Cep: cep,
+          Bairro: bairro,
+          Logradouro: logradouro,
+          Complemento: complemento
+        })
+
         if (!titulo || !descricao || !dataTermino || !senha || !dataNascimento)
             return
 

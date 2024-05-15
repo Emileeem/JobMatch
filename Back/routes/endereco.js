@@ -1,5 +1,5 @@
 const express = require('express');
-const EnderecoController = require('../controller/enderecoController');
+// const EnderecoController = require('../controller/enderecoController.js');
 const router = express.Router();
 
 router
@@ -8,10 +8,10 @@ router
         return
     })
 
-    .get('/', EnderecoController.getAllUser)
-    .get('/:id', EnderecoController.getUserById)
-    .post('/', EnderecoController.create)
-    .patch('/:id', EnderecoController.update)
-    .delete('/:id', EnderecoController.delete)
+    // .get('/', EnderecoController.getAllUser)
+    // .get('/:id', EnderecoController.getUserById)
+    // .post('/', EnderecoController.create)
+    // .patch('/:id', EnderecoController.update)
+    // .delete('/:id', EnderecoController.delete)
 
 module.exports = router

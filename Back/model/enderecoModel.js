@@ -1,6 +1,3 @@
-// import { Sequelize } from "sequelize";
-// import db from "../startup/db.js";
-
 const { Sequelize } = require('sequelize');
 const db = require('../startup/db.js');
 

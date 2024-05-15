@@ -1,15 +1,17 @@
-// import express from "express";
-// import routes from "./startup/routes.js";
-// import db from "./startup/db.js";
-
 const express = require('express');
 const routes = require('./startup/routes.js');
 const db = require('./startup/db.js');
 
+require('dotenv').config()
+
 const app = express();
 
+// console.log(app + "1")
+
 app.use(express.json());
-app.use(routes);
+app.use(router(app));
+
+// console.log(app + "2")
 
 db.sync(() => console.log(`Banco de dados conectado: ${process.env.DB_NAME}`));
 
