@@ -44,6 +44,9 @@ h1 {
     display: flex;
     align-items: center;    
     margin: 6%;
+    background-color: white;
+    padding: 2%;
+    color: black;
 }
 
 .input1 {
@@ -107,6 +110,14 @@ h1 {
     width: 50%;
 }
 
+.cadastro {
+    display: none;
+}
+
+.cadastro2 {
+    display: none;
+}
+
 @media (width <= 760px)
 {
     body {
@@ -127,6 +138,17 @@ h1 {
 
     .entrar {
         width: 50%;
+    }
+
+    .cadastro {
+        display: flex;
+        color: white;
+        justify-content: center;
+    }
+
+    .cadastro2 {
+        display: flex;
+        justify-content: center;
     }
 }
 
