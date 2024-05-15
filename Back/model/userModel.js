@@ -32,8 +32,10 @@ export default db.define("Usuario", {
   },
   IDEndereco: {
     type: Sequelize.INTEGER,
-    references: 'Endereco',
-    referencesKey: 'IDEndereco'
+    references: {
+        model: 'Endereco',
+        key: 'IDEndereco'
     }
+  },
 });
 

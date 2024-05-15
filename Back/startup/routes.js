@@ -1,9 +1,8 @@
 import express from "express";
-import endereco from "../controller/enderecoController.js";
+import * as user from "../controller/userController.js"
 
 const routes = express.Router();
 
-routes.get("/endereco", endereco.findAll);
-routes.post("/endereco/add", endereco.addAddress);
+routes.post("/api/user", user.create());
 
 export { routes as default };

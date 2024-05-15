@@ -1,4 +1,5 @@
 const User = require('../model/userModel');
+import Endereco from '../model/enderecoModel'; 
 
 class UserController {
 
@@ -23,10 +24,21 @@ class UserController {
     }
 
     static async create(req, res) {
-        const { nome, email, cpf, senha, dataNascimento } = req.body;
+        const { nome, email, cpf, senha, dataNascimento, pais, uf, municipio, cep, bairro, logradouro, complemento } = req.body;
 
-        if (!nome || !email || !cpf || !senha || !dataNascimento)
+        if (!nome || !email || !cpf || !senha || !dataNascimento || !pais || !uf || !municipio || !cep || !bairro || !logradouro || !complemento)
             return
+
+        const endereco = 
+        {
+            Pais: pais,
+            UF: uf, 
+            Municipio: municipio,
+            Cep: cep,
+            Bairro: bairro,
+            Logradouro: logradouro,
+            Complemento: complemento
+        }
 
         const obj =
         {
@@ -38,10 +50,16 @@ class UserController {
         }
 
         try {
-            const p = await User.create(obj);
+
+            const createdAddress = await Endereco.create(endereco)
+            const createdUser = await User.create(obj);
+
+            await createdUser.update({ IDEndereco: createdAddress.IDEndereco });
+
             return res.status(201).send({ message: "Pessoa inserida com sucesso", body: p })
 
         } catch (error) {
+            console.error("Erro ao criar usuário:", error);
             return res.status(500).send({ error: error })
         }
     }
