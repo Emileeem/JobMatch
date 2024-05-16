@@ -34,13 +34,17 @@ export default db.define("Taxa", {
     },
     IDEndereco: {
         type: Sequelize.INTEGER,
-        references: 'Endereco',
-        referencesKey: 'IDEndereco' 
+        references: {
+            model: 'Endereco',
+            key: 'IDEndereco'
+        }
     },
     IDUsuario: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: 'Usuario',
-        referencesKey: 'IDUsuario'
+        references: {
+            model: 'Usuario',
+            key: 'IDUsuario'
+        }
     }
 });
