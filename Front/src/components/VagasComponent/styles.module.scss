@@ -13,20 +13,36 @@
 
 .card {
     background-color: #415a77a2;
-    width: 18vw;
-    height: 48vh;
+    width: 15vw;
+    height: 43vh;
     border-radius: 10%;
 }
 
 .label {
     font-weight: 700;
-    font-size: 25px;
+    font-size: 22px;
     margin: 0;
 }
 
 .alinha{
+    margin-top: 20px;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin-left: 0;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    margin-left: 0 !important;
+}
+
+.container{
+    align-items: flex-start !important;
+}
+
+.vaga{
+    margin-top: 45px;
+}
+
+.vagas{
+    margin-top: 100px;
+    font-size: 40px !important;
+    font-weight: bold !important;
+    color: #0D1B2A;
 }

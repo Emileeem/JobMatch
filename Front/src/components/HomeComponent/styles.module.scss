@@ -3,6 +3,12 @@ body {
   font-family: "Imprima", sans-serif;
 }
 
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
 .logo {
   position: absolute;
   left: 5%;
@@ -19,8 +25,8 @@ body {
 .nome {
   position: absolute;
   left: 9%;
-  top: 28%;
-  width: 30%;
+  top: 22%;
+  width: 32%;
 }
 
 .paragraph {
@@ -31,16 +37,95 @@ body {
   top: calc(35% + 30px);
   width: 30%;
   line-height: 1.5;
-  font-size: 30px;
+  font-size: 2vw; 
   text-align: justify;
+}
+
+.btnlabel {
+  color: #E0E1DD;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
 }
 
 .button {
   background-color: #0D1B2A;
-  top: calc(65% + 1vh);
+  top: 72%;
   position: absolute;
   left: 10.2%;
-  width: 330px;
-  height: 80px;
+  width: 30%;
+  height: 9%;
   border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s; 
+  border: 2px solid transparent; 
 }
+
+.button:hover {
+  background-color: #415a77a2;
+  border-color: #E0E1DD; 
+}
+
+.button:active {
+  background-color: #415a77a2;
+  border-color: #E0E1DD; 
+}
+
+.card {
+  background-color: #415a77a2;
+  width: 100%;
+  height: 50vh;
+  border-radius: 10%;
+}
+
+.label {
+  font-weight: bold;
+  font-size: 1.3vw; 
+  margin: 0;
+}
+
+.alinha {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: auto;
+  margin-top: 22%;
+  margin-left: 110%; 
+  width: 19vw;
+}
+
+.container{
+  align-items: center
+}
+
+@media screen and (max-width: 768px) {
+  .img, .nome, .paragraph, .button, .card {
+    position: static; 
+    width: 100%; 
+    left: 0;
+    top: auto;
+  }
+
+  .img {
+    margin-top: 20px; 
+  }
+
+  .paragraph {
+    width: auto; 
+    font-size: 18px; 
+  }
+
+  .button {
+    width: 100%; 
+    margin-top: 20px; 
+  }
+
+  .alinha {
+    align-items: center; 
+    margin-left: 0; 
+  }
+}
+

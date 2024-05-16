@@ -1,4 +1,4 @@
-const Taxa = require('../model/TaxaModel');
+const Taxa = require('../model/taxaModel');
 
 class UserController {
 

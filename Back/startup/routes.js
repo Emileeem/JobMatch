@@ -1,19 +1,8 @@
-const express = require('express');
-const adicionarVagas = require('../src/routes/AdicionarVagasRoute');
+const express = require("express");
+const user = require("../controller/userController.js");
 
-module.exports = function (app) {
-    app
-        .use(express.json())
-        .use('/user', user)
-        .use('/vaga', vaga)
-}
+const routes = express.Router();
 
-// import express from "express";
-// import * as user from "../controller/userController.js"
+routes.post("/api/user", user.create);
 
-// const routes = express.Router();
-
-// routes.post("/api/user", user.create());
-
-// export { routes as default };
-
+module.exports = routes;
