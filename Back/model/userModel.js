@@ -27,7 +27,7 @@ export default db.define("Usuario", {
     allowNull: false,
   },
   DataNascimento: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.BIGINT,
     allowNull: false,
   },
   IDEndereco: {
@@ -38,4 +38,3 @@ export default db.define("Usuario", {
     }
   },
 });
-

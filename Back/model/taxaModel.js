@@ -17,11 +17,11 @@ export default db.define("Taxa", {
         allowNull: false,
     },
     DataInicio: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.BIGINT,
         allowNull: false,
     },
     DataTermino: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.BIGINT,
         allowNull: false,
     },
     Valor: {
@@ -41,7 +41,6 @@ export default db.define("Taxa", {
     },
     IDUsuario: {
         type: Sequelize.INTEGER,
-        allowNull: false,
         references: {
             model: 'Usuario',
             key: 'IDUsuario'

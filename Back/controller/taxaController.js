@@ -1,21 +1,23 @@
-const Taxa = require('../model/taxaModel');
+import taxaModel from '../model/taxaModel.js';
+import userModel from '../model/userModel.js';
+import enderecoModel from '../model/enderecoModel.js';
 
-class UserController {
+export default class TaxaController {
 
-    static async getAllUser(req, res) {
-        try {
-            const taxa = await Taxa.find();
-            return res.status(200).send({ data: taxa });
-        } catch (error) {
-            return res.status(500).send({ error: error });
-        }
+    // static async getAllUser(req, res) {
+    //     try {
+    //         const taxa = await taxaModel.find();
+    //         return res.status(200).send({ data: taxa });
+    //     } catch (error) {
+    //         return res.status(500).send({ error: error });
+    //     }
 
-    }
+    // }
 
-    static async getUserById(req, res) {
+    static async getTaxaById(req, res) {
         const { id } = req.params;
         try {
-            const taxa = await Taxa.findById(id);
+            const taxa = await taxaModel.findByPk(id);
             return res.status(200).json(taxa);
         } catch (error) {
             res.status(500).json({ error: error })
@@ -23,23 +25,35 @@ class UserController {
     }
 
     static async create(req, res) {
-        const { titulo, descricao, cpf: dataTermino, senha, dataNascimento } = req.body;
+        const { titulo, descricao, dataTermino, dataInicio, valor, qtdTaxa, IDEndereco, IDUsuario } = req.body;
+        console.log(req.body)
 
-        if (!titulo || !descricao || !dataTermino || !senha || !dataNascimento)
+        if (!titulo || !descricao || !dataTermino || !valor || !qtdTaxa)
             return
 
+        const endereco = await enderecoModel.findByPk(IDEndereco);
+        if (!endereco) {
+            return res.status(404).json({ error: 'Endereco not found' });
+        }
+
+        const usuario = await userModel.findByPk(IDUsuario);
+        if (!usuario) {
+            return res.status(404).json({ error: 'Endereco not found' });
+        }
+        
+        try {
         const obj =
         {
             Titulo: titulo,
             Descricao: descricao,
-            DataInicio: Date.now(),
+            DataInicio: dataInicio,
             DataTermino: dataTermino,
-            Valor: dataNascimento,
+            Valor: valor,
             QtdTaxa: qtdTaxa,
+            IDEndereco: endereco.id,
+            IDUsuario: usuario.id
         }
-
-        try {
-            const p = await Taxa.create(obj);
+            const p = await taxaModel.create(obj);
             return res.status(201).send({ message: "Taxa inserida com sucesso", body: p })
 
         } catch (error) {
@@ -47,25 +61,24 @@ class UserController {
         }
     }
 
-    static async update(req, res) {
-        const { id } = req.params;
-        if (!id)
-            return res.status(400).send({ message: "No id provider" })
-    }
+    // static async update(req, res) {
+    //     const { id } = req.params;
+    //     if (!id)
+    //         return res.status(400).send({ message: "No id provider" })
+    // }
 
     static async delete(req, res) {
         const { id } = req.params;
+        const IDTaxa = id
         if (!id)
             return res.status(400).send({ message: "No id provider" });
 
         try {
-            await Taxa.findByIdAndDelete(id);
-            return res.status(200).send({ message: "Person deleted successfully" })
+            const p = await taxaModel.destroy({where: {IDTaxa}});
+            return res.status(200).send({ message: "Taxa Deletada com sucesso", body: p })
         } catch (error) {
-            return res.status(500).send({ message: "Something failled" })
+            return res.status(500).send({ message: error })
         }
     }
 
 }
-
-module.exports = UserController
