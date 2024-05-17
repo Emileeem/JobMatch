@@ -19,7 +19,7 @@ create table Usuario (
     Email varchar(50) not null,
     Cpf varchar(11) not null,
     Senha varchar(50) not null,
-    DataNascimento int not null,
+    DataNascimento long not null,
     IDEndereco int,
     foreign key (IDEndereco) references Endereco(IDEndereco)
 );
@@ -28,11 +28,11 @@ create table Taxa (
 	IDTaxa int primary key auto_increment,
     Titulo varchar(30) not null,
     Descricao varchar(255) not null,
-    DataInicio int not null,
-    DataTermino int,
+    DataInicio long not null,
+    DataTermino long,
     Valor double not null,
     QtdTaxa tinyint not null,
-    IDUsuario int not null,
+    IDUsuario int,
     IDEndereco int,
     foreign key (IDUsuario) references Usuario(IDUsuario),
     foreign key (IDEndereco) references Endereco(IDEndereco)
