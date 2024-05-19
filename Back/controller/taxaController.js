@@ -61,11 +61,53 @@ export default class TaxaController {
         }
     }
 
-    // static async update(req, res) {
-    //     const { id } = req.params;
-    //     if (!id)
-    //         return res.status(400).send({ message: "No id provider" })
-    // }
+    static async update(req, res) {    
+        const { titulo, descricao, dataTermino, dataInicio, valor, qtdTaxa, IDEndereco, IDUsuario } = req.body;
+        console.log(req.body)
+
+        const { id } = req.params;
+
+        if (!titulo || !descricao || !dataTermino || !valor || !qtdTaxa)
+            return
+
+        const endereco = await enderecoModel.findByPk(IDEndereco);
+        if (!endereco) {
+            return res.status(404).json({ error: 'Endereco not found' });
+        }
+
+        const usuario = await userModel.findByPk(IDUsuario);
+        if (!usuario) {
+            return res.status(404).json({ error: 'Endereco not found' });
+        }
+
+        if (!id)
+            return res.status(400).send({ message: "No id provider" })
+        const IDTaxa = id
+        
+        try {
+            const p = await taxaModel.update(
+                {
+                    Titulo: titulo,
+                    Descricao: descricao,
+                    DataInicio: dataInicio,
+                    DataTermino: dataTermino,
+                    Valor: valor,
+                    QtdTaxa: qtdTaxa,
+                    IDEndereco: endereco.id,
+                    IDUsuario: usuario.id
+                },
+                {
+                    where: {
+                        IDTaxa: IDTaxa
+                    }
+                }
+            );
+            return res.status(201).send({ message: "Taxa Editada com sucesso", body: p })
+        
+            } catch (error) {
+                return res.status(500).send({ error: error })
+            }
+    }
 
     static async delete(req, res) {
         const { id } = req.params;
