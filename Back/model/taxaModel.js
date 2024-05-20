@@ -32,20 +32,19 @@ export default db.define("Taxas", {
         type: Sequelize.INTEGER,
         allowNull: false,
     },
-    // createdAt: {
-    //     type: Sequelize.Date,
-    //     required: true
-    // },
-    // updatedAt: {
-    //     type: Sequelize.Date,
-    //     required: false
-    // },
-    // removedAt: {
-    //     type: Sequelize.Date,
-    //     required: false
-    // },
+    createdAt: {
+        type: Sequelize.DATE,
+        allowNull: true,
+        defaultValue: Sequelize.NOW
+    },
+    updatedAt: {
+        type: Sequelize.DATE,
+        allowNull: false,
+        defaultValue: Sequelize.NOW
+    },
     IDEndereco: {
         type: Sequelize.INTEGER,
+        allowNull: false,
         references: {
             model: 'Endereco',
             key: 'IDEndereco'
@@ -53,11 +52,12 @@ export default db.define("Taxas", {
     },
     IDUsuario: {
         type: Sequelize.INTEGER,
+        allowNull: false,
         references: {
             model: 'Usuario',
             key: 'IDUsuario'
         }
     },
 }, {
-    timestamps: false
+    timestamps: true  
 });

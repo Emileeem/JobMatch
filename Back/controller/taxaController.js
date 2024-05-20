@@ -4,15 +4,15 @@ import enderecoModel from '../model/enderecoModel.js';
 
 export default class TaxaController {
 
-    // static async getAllUser(req, res) {
-    //     try {
-    //         const taxa = await taxaModel.find();
-    //         return res.status(200).send({ data: taxa });
-    //     } catch (error) {
-    //         return res.status(500).send({ error: error });
-    //     }
+    static async getAllTaxa(req, res) {
+        try {
+            const taxa = await taxaModel.findAll();
+            return res.status(200).send({ data: taxa });
+        } catch (error) {
+            return res.status(500).send({ error: error });
+        }
 
-    // }
+    }
 
     static async getTaxaById(req, res) {
         const { id } = req.params;
@@ -67,7 +67,7 @@ export default class TaxaController {
 
         const { id } = req.params;
 
-        if (!titulo || !descricao || !dataTermino || !valor || !qtdTaxa)
+        if (!titulo || !descricao || !dataInicio || !dataTermino || !valor || !qtdTaxa)
             return
 
         const endereco = await enderecoModel.findByPk(IDEndereco);

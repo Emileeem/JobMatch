@@ -10,7 +10,9 @@ create table Enderecos (
     Cep varchar(9) not null,
     Bairro varchar(30) not null,
     Logradouro varchar(30) not null,
-    Complemento varchar(20) not null
+    Complemento varchar(20) not null,
+	createdAt timestamp default current_timestamp,
+    updatedAt timestamp default current_timestamp on update current_timestamp
 );
 
 create table Usuarios (
@@ -20,6 +22,8 @@ create table Usuarios (
     Cpf varchar(11) not null,
     Senha varchar(50) not null,
     DataNascimento long not null,
+	createdAt timestamp default current_timestamp,
+	updatedAt timestamp default current_timestamp on update current_timestamp,
     IDEndereco int,
     foreign key (IDEndereco) references Enderecos(IDEndereco)
 );
@@ -32,6 +36,8 @@ create table Taxas (
     DataTermino long,
     Valor double not null,
     QtdTaxa tinyint not null,
+	createdAt timestamp default current_timestamp,
+    updatedAt timestamp default current_timestamp on update current_timestamp,
     IDUsuario int,
     IDEndereco int,
     foreign key (IDUsuario) references Usuarios(IDUsuario),

@@ -4,15 +4,15 @@ import enderecoModel from '../model/enderecoModel.js';
 
 export default class UserController {
     
-    // static async getAllUser(req, res) {
-    //     try {
-    //         const people = await userModel.find();
-    //         return res.status(200).send({ data: people });
-    //     } catch (error) {
-    //         return res.status(500).send({ error: error });
-    //     }
+    static async getAllUser(req, res) {
+        try {
+            const people = await userModel.findAll();
+            return res.status(200).send({ data: people });
+        } catch (error) {
+            return res.status(500).send({ error: error });
+        }
         
-    // }
+    }
 
     static async getUserById(req, res) {
         const { id } = req.params;
@@ -25,7 +25,6 @@ export default class UserController {
     }
     
     static async create(req, res) {
-        console.log("Chegou")
         const { nome, email, cpf, senha, dataNascimento, endereco } = req.body;
         console.log(nome, email, cpf, senha, dataNascimento, endereco)
         
