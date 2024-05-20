@@ -4,15 +4,15 @@ import enderecoModel from '../model/enderecoModel.js';
 
 export default class TaxaController {
 
-    // static async getAllUser(req, res) {
-    //     try {
-    //         const taxa = await taxaModel.find();
-    //         return res.status(200).send({ data: taxa });
-    //     } catch (error) {
-    //         return res.status(500).send({ error: error });
-    //     }
+    static async getAllTaxa(req, res) {
+        try {
+            const taxa = await taxaModel.findAll();
+            return res.status(200).send({ data: taxa });
+        } catch (error) {
+            return res.status(500).send({ error: error });
+        }
 
-    // }
+    }
 
     static async getTaxaById(req, res) {
         const { id } = req.params;
@@ -38,7 +38,7 @@ export default class TaxaController {
 
         const usuario = await userModel.findByPk(IDUsuario);
         if (!usuario) {
-            return res.status(404).json({ error: 'Endereco not found' });
+            return res.status(404).json({ error: 'Usuário not found' });
         }
         
         try {
@@ -71,14 +71,14 @@ export default class TaxaController {
             return
 
         const endereco = await enderecoModel.findByPk(IDEndereco);
-        if (!endereco) {
-            return res.status(404).json({ error: 'Endereco not found' });
-        }
+        // if (!endereco) {
+        //      return res.status(404).json({ error: 'Endereco not found' });
+        // }
 
         const usuario = await userModel.findByPk(IDUsuario);
-        if (!usuario) {
-            return res.status(404).json({ error: 'Endereco not found' });
-        }
+        // if (!usuario) {
+        //      return res.status(404).json({ error: 'Endereco not found' });
+        // }
 
         if (!id)
             return res.status(400).send({ message: "No id provider" })

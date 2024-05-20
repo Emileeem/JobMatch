@@ -10,6 +10,7 @@ routes.post("/api/user/", UserController.create)
 routes.put("/api/user/:id", UserController.update)
 
 // Taxas
+routes.get("/api/taxa/", TaxaController.getAllTaxa)
 routes.get("/api/taxa/:id", TaxaController.getTaxaById)
 routes.post("/api/taxa/", TaxaController.create)
 routes.delete("/api/taxa/:id", TaxaController.delete)

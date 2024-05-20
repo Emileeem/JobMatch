@@ -17,19 +17,24 @@ function AdicionarVagasComponent(props) {
     const [quantidadedePessoas, setQuantidadedePessoas] = useState("");
 
     async function handleSubmit(e) {
+        e.preventDefault();
         if (!formValid()) return;
         try {
-            var res = await axios.post("http://localhost:8080/adicionarvagas", {
-                text, token: sessionStorage.getItem('token'),
+            const response = await axios.post("http://localhost:3000/api/taxa/", {
+                titulo: titulo,
+                descricao: descricao,
+                dataInicio: dataInicio,
+                dataTermino: dataTermino,
+                valor: valor,
+                qtdTaxa: quantidadedePessoas, 
+                IDEndereco: 1, 
+                IDUsuario: 1 
             });
 
-            setMessage(res.data.message);
-            setVariant("success");
-            setShow(true);
-            setText("");
-            window.location.reload();
+            console.log(response.data);
+            
         } catch (error) {
-            console.log(error);
+            console.error("Erro ao adicionar vagas:", error);
         }
     }
 
@@ -122,7 +127,3 @@ function AdicionarVagasComponent(props) {
 }
 
 export default AdicionarVagasComponent;
-
-
-
-
