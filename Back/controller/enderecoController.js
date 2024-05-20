@@ -71,7 +71,7 @@
 
 // module.exports = UserController
 
-const EnderecoModel = require("../model/enderecoModel.js").default;
+import EnderecoModel from "../model/enderecoModel.js";
 
 function findAll(req, res) {
   EnderecoModel.findAll().then((result) => res.json(result));

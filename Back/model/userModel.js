@@ -1,42 +1,40 @@
-const { Sequelize, DataTypes } = require("sequelize");
-const db = require("../startup/db.js");
+import { Sequelize } from "sequelize";
+import db from "../startup/db.js";
 
-const User = db.define("Usuario", {
+export default db.define("Usuario", {
   IDUsuario: {
-    type: DataTypes.INTEGER.UNSIGNED,
+    type: Sequelize.INTEGER.UNSIGNED,
     primaryKey: true,
     autoIncrement: true,
     allowNull: false,
   },
   Nome: {
-    type: DataTypes.STRING,
+    type: Sequelize.STRING,
     allowNull: false,
   },
   Email: {
-    type: DataTypes.STRING,
+    type: Sequelize.STRING,
     allowNull: false,
     unique: true,
   },
   Cpf: {
-    type: DataTypes.STRING,
+    type: Sequelize.STRING,
     allowNull: false,
     unique: true,
   },
   Senha: {
-    type: DataTypes.STRING,
+    type: Sequelize.STRING,
     allowNull: false,
   },
   DataNascimento: {
-    type: DataTypes.INTEGER,
+    type: Sequelize.BIGINT,
     allowNull: false,
   },
   IDEndereco: {
-    type: DataTypes.INTEGER,
+    type: Sequelize.INTEGER,
     references: {
-      model: 'Endereco',
-      key: 'IDEndereco'
+        model: 'Endereco',
+        key: 'IDEndereco'
     }
   },
 });
-
-module.exports = User;

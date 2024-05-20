@@ -118,67 +118,6 @@ h1 {
     display: none;
 }
 
-.input1 {
-    background-image: url(../../Img/user.png);
-    background-repeat: no-repeat;
-    background-position: calc(10% - 10px) center;
-    padding-right: 30px;
-    height: 40px;
-    background-size: 40px;
-    border-radius: 40px;
-    background-color: #415A77;
-    color: #fff;
-    border: 0px solid;
-    font-size: 20px;
-    width: 70%;
-    margin: 2%;
-    font-weight: bolder;
-    text-align: center;
-}
-
-.input2 {
-    background-image: url(../../Img/cadeado.png);
-    background-repeat: no-repeat;
-    background-position: calc(10% - 8px) center;
-    padding-right: 30px;
-    height: 40px;
-    background-size: 30px;
-    border-radius: 40px;
-    background-color: #415A77;
-    color: #fff;
-    border: 0px solid;
-    font-size: 20px;
-    width: 70%;
-    margin: 2%;
-    font-weight: bolder;
-    text-align: center;
-}
-
-.inputDiv {
-    position: relative;
-}
-
-.eyeIcon {
-    width: 30px;
-    position: absolute;
-    top: 25px;
-    right: 15px;
-    transform: translate(-50%, -50%);
-}
-
-.entrar {
-    background: rgb(65,90,119);
-    background: linear-gradient(90deg, rgba(65,90,119,1) 0%, rgba(224,225,221,1) 100%);
-    border-radius: 48px;
-    border: 1px solid white;
-    margin: 3%;
-    width: 30%;
-}
-
-.logar {
-    width: 50%;
-}
-
 @media (width <= 760px)
 {
     body {
@@ -188,5 +127,43 @@ h1 {
 
     .logo {
         width: 65%;
+    }
+
+    .welcome {
+        display: none;
+    }
+    .logar {
+        width: 100%;
+    }
+
+    .entrar {
+        width: 50%;
+    }
+
+    .cadastro {
+        display: flex;
+        color: white;
+        justify-content: center;
+    }
+
+    .cadastro2 {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+@media (width >= 1208px)
+{
+    .logo {
+        width: 40%;
+    }
+
+    .body {
+        width: 1000px;
+        height: 500px;
+    }
+    .eyeIcon {
+        top: 30px;
+        right: 52px;
     }
 }

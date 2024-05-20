@@ -1,5 +1,5 @@
-const Sequelize = require("sequelize");
-const db = require("../startup/db.js").default;
+import { Sequelize } from "sequelize";
+import db from "../startup/db.js";
 
 export default db.define("Taxa", {
     IDTaxa: {
@@ -17,11 +17,11 @@ export default db.define("Taxa", {
         allowNull: false,
     },
     DataInicio: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.BIGINT,
         allowNull: false,
     },
     DataTermino: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.BIGINT,
         allowNull: false,
     },
     Valor: {
@@ -34,13 +34,16 @@ export default db.define("Taxa", {
     },
     IDEndereco: {
         type: Sequelize.INTEGER,
-        references: 'Endereco',
-        referencesKey: 'IDEndereco' 
+        references: {
+            model: 'Endereco',
+            key: 'IDEndereco'
+        }
     },
     IDUsuario: {
         type: Sequelize.INTEGER,
-        allowNull: false,
-        references: 'Usuario',
-        referencesKey: 'IDUsuario'
+        references: {
+            model: 'Usuario',
+            key: 'IDUsuario'
+        }
     }
 });

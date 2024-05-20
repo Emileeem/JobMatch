@@ -1,8 +1,18 @@
-const express = require("express");
-const user = require("../controller/userController.js");
-
+import express from "express";
+import UserController from "../controller/userController.js"
+import TaxaController from "../controller/taxaController.js"
 const routes = express.Router();
 
-routes.post("/api/user", user.create);
+// Users
+routes.get("/api/taxa/:id", UserController.getUserById)
+routes.post("/api/user/", UserController.create)
+// routes.delete("/api/user/:id", UserController.delete)
+routes.put("/api/user/:id", UserController.update)
 
-module.exports = routes;
+// Taxas
+routes.get("/api/taxa/:id", TaxaController.getTaxaById)
+routes.post("/api/taxa/", TaxaController.create)
+routes.delete("/api/taxa/:id", TaxaController.delete)
+routes.put("/api/taxa/:id", TaxaController.update)
+
+export { routes as default };
