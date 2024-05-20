@@ -1,7 +1,7 @@
 import { Sequelize } from "sequelize";
 import db from "../startup/db.js";
 
-export default db.define("Endereco", {
+export default db.define("Enderecos", {
     IDEndereco: {
         type: Sequelize.INTEGER.UNSIGNED,
         primaryKey: true,
@@ -36,5 +36,19 @@ export default db.define("Endereco", {
         type: Sequelize.STRING,
         allowNull: false,
     },
+    // createdAt: {
+    //     type: Sequelize.Date,
+    //     required: true
+    // },
+    // updatedAt: {
+    //     type: Sequelize.Date,
+    //     required: false
+    // },
+    // removedAt: {
+    //     type: Sequelize.Date,
+    //     required: false
+    // },
+}, {
+    timestamps: false
 });
 

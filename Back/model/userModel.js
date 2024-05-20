@@ -1,7 +1,7 @@
 import { Sequelize } from "sequelize";
 import db from "../startup/db.js";
 
-export default db.define("Usuario", {
+export default db.define("Usuarios", {
   IDUsuario: {
     type: Sequelize.INTEGER.UNSIGNED,
     primaryKey: true,
@@ -30,6 +30,18 @@ export default db.define("Usuario", {
     type: Sequelize.BIGINT,
     allowNull: false,
   },
+  // createdAt: {
+  //   type: Sequelize.Date,
+  //   required: true
+  // },
+  // updatedAt: {
+  //     type: Sequelize.Date,
+  //     required: false
+  // },
+  // removedAt: {
+  //     type: Sequelize.Date,
+  //     required: false
+  // },
   IDEndereco: {
     type: Sequelize.INTEGER,
     references: {
@@ -37,4 +49,7 @@ export default db.define("Usuario", {
         key: 'IDEndereco'
     }
   },
+
+}, {
+  timestamps: false
 });

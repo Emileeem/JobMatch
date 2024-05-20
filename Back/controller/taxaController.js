@@ -50,8 +50,8 @@ export default class TaxaController {
             DataTermino: dataTermino,
             Valor: valor,
             QtdTaxa: qtdTaxa,
-            IDEndereco: endereco.id,
-            IDUsuario: usuario.id
+            IDEndereco: endereco.IDEndereco,
+            IDUsuario: usuario.IDUsuario
         }
             const p = await taxaModel.create(obj);
             return res.status(201).send({ message: "Taxa inserida com sucesso", body: p })
@@ -93,8 +93,8 @@ export default class TaxaController {
                     DataTermino: dataTermino,
                     Valor: valor,
                     QtdTaxa: qtdTaxa,
-                    IDEndereco: endereco.id,
-                    IDUsuario: usuario.id
+                    IDEndereco: endereco.IDEndereco,
+                    IDUsuario: usuario.IDUsuario
                 },
                 {
                     where: {

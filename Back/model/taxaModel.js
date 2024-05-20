@@ -1,7 +1,7 @@
 import { Sequelize } from "sequelize";
 import db from "../startup/db.js";
 
-export default db.define("Taxa", {
+export default db.define("Taxas", {
     IDTaxa: {
         type: Sequelize.INTEGER.UNSIGNED,
         primaryKey: true,
@@ -32,6 +32,18 @@ export default db.define("Taxa", {
         type: Sequelize.INTEGER,
         allowNull: false,
     },
+    // createdAt: {
+    //     type: Sequelize.Date,
+    //     required: true
+    // },
+    // updatedAt: {
+    //     type: Sequelize.Date,
+    //     required: false
+    // },
+    // removedAt: {
+    //     type: Sequelize.Date,
+    //     required: false
+    // },
     IDEndereco: {
         type: Sequelize.INTEGER,
         references: {
@@ -45,5 +57,7 @@ export default db.define("Taxa", {
             model: 'Usuario',
             key: 'IDUsuario'
         }
-    }
+    },
+}, {
+    timestamps: false
 });

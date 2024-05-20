@@ -26,26 +26,25 @@ export default class UserController {
     
     static async create(req, res) {
         console.log("Chegou")
-        const { nome, email, cpf, senha, dataNascimento, pais, uf, municipio, cep, bairro, logradouro, complemento } = req.body;
-        console.log(nome, email, cpf, senha, dataNascimento, pais, uf, municipio, cep, bairro, logradouro, complemento)
+        const { nome, email, cpf, senha, dataNascimento, endereco } = req.body;
+        console.log(nome, email, cpf, senha, dataNascimento, endereco)
         
-        if (!nome || !email || !cpf || !senha || !dataNascimento || !pais || !uf || !municipio || !cep || !bairro || !logradouro || !complemento)
+        if (!nome || !email || !cpf || !senha || !dataNascimento || !endereco)
         return
         
         try {
-            const endereco = 
+            const endereco_user = 
             {
-                Pais: pais,
-                UF: uf, 
-                Municipio: municipio,
-                Cep: cep,
-                Bairro: bairro,
-                Logradouro: logradouro,
-                Complemento: complemento
+                Pais: endereco.pais,
+                UF: endereco.uf, 
+                Municipio: endereco.municipio,
+                Cep: endereco.cep,
+                Bairro: endereco.bairro,
+                Logradouro: endereco.logradouro,
+                Complemento: endereco.complemento
             }
             
-            const createdAddress = await enderecoModel.create(endereco)
-            // console.log(createdAddress);
+            const createdAddress = await enderecoModel.create(endereco_user)
             console.log(createdAddress.IDEndereco);
             const obj =
             {
@@ -54,7 +53,7 @@ export default class UserController {
                 Cpf: cpf,
                 Senha: senha,
                 DataNascimento: dataNascimento,
-                Endereco: createdAddress.IDEndereco
+                IDEndereco: createdAddress.IDEndereco
             }
             
             const createdUser = await userModel.create(obj);
@@ -68,47 +67,41 @@ export default class UserController {
     }
 
     static async update(req, res) {    
-        const { nome, email, cpf, senha, dataNascimento, pais, uf, municipio, cep, bairro, logradouro, complemento, IDEndereco } = req.body;
-        console.log(req.body)
-        console.log("1 !!!!")
+        const { nome, email, cpf, senha, dataNascimento, IDEndereco } = req.body;
+        console.log(nome, email, cpf, senha, dataNascimento, IDEndereco)
 
         const { id } = req.params;
 
-        if (!nome || !email || !cpf || !senha || !dataNascimento || !pais || !uf || !municipio || !cep || !bairro || !logradouro || !complemento)
+        if (!nome || !email || !cpf || !senha || !dataNascimento || !IDEndereco)
             return
-        console.log("2 !!!!")
         
-        const endereco = await enderecoModel.findByPk(IDEndereco);
-        console.log(endereco)
-        if (!endereco) {
+        const endereco_user = await enderecoModel.findByPk(IDEndereco);
+        console.log(endereco_user)
+        if (!endereco_user) {
             return res.status(404).json({ error: 'Endereco not found' });
         }
-        console.log("3 !!!!")
         
         if (!id)
         return res.status(400).send({ message: "No id provider" })
-        const IDUser = id
-        console.log("4 !!!!")
+        const IDUsuario = id
         
         try {
-            const p = await userModel.update(
+            const user = await userModel.update(
                 {
                     Nome: nome,
                     Email: email,
                     Cpf: cpf,
                     Senha: senha,
                     DataNascimento: dataNascimento,
-                    IDEndereco: endereco.id,
+                    IDEndereco: IDEndereco,
                 },
                 {
                     where: {
-                        IDUser: IDUser
+                        IDUsuario: IDUsuario
                     }
                 }
             );
-            console.log("5 !!!!")
-            return res.status(201).send({ message: "User Editado com sucesso", body: p })
-            
+            return res.status(201).send({ message: "Usuario Editado com sucesso", body: user })
         } catch (error) {
                 return res.status(500).send({ error: error })
             }
