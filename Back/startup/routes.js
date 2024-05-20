@@ -6,8 +6,11 @@ const routes = express.Router();
 // Users
 routes.get("/api/taxa/:id", UserController.getUserById)
 routes.post("/api/user/", UserController.create)
-// routes.delete("/api/user/:id", UserController.delete)
-routes.put("/api/user/:id", UserController.update)
+routes.delete("/api/user/:id", UserController.delete)
+routes.put("/api/user/:id", UserController.updateUsuario)
+
+// Endereco
+routes.put("/api/user/endereco/:id", UserController.updateEndereco)
 
 // Taxas
 routes.get("/api/taxa/:id", TaxaController.getTaxaById)

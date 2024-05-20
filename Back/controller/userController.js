@@ -66,7 +66,7 @@ export default class UserController {
         }
     }
 
-    static async update(req, res) {    
+    static async updateUsuario(req, res) {    
         const { nome, email, cpf, senha, dataNascimento, IDEndereco } = req.body;
         console.log(nome, email, cpf, senha, dataNascimento, IDEndereco)
 
@@ -107,14 +107,49 @@ export default class UserController {
             }
     }
 
+    static async updateEndereco(req, res) {    
+        const { endereco } = req.body;
+        console.log(endereco)
+
+        const { id } = req.params;
+
+        if (!endereco)
+            return
+        
+        if (!id)
+        return res.status(400).send({ message: "No id provider" })
+        const IDEndereco = id
+        
+        try {
+            const enderecos = await enderecoModel.update({
+                    Pais: endereco.pais,
+                    UF: endereco.uf, 
+                    Municipio: endereco.municipio,
+                    Cep: endereco.cep,
+                    Bairro: endereco.bairro,
+                    Logradouro: endereco.logradouro,
+                    Complemento: endereco.complemento
+                },
+                {
+                    where: {
+                        IDEndereco: IDEndereco
+                    }
+                }
+            );
+            return res.status(201).send({ message: "Usuario Editado com sucesso", body: enderecos })
+        } catch (error) {
+                return res.status(500).send({ error: error })
+            }
+    }
+
     static async delete(req, res) {
         const { id } = req.params;
-        const IDUser = id
+        const IDUsuario = id
         if (!id)
             return res.status(400).send({ message: "No id provider" });
 
         try {
-            const p = await taxaModel.destroy({where: {IDUser}});
+            const p = await taxaModel.destroy({where: {IDUsuario}});
             return res.status(200).send({ message: "User Deletado com sucesso", body: p })
         } catch (error) {
             return res.status(500).send({ message: error })
