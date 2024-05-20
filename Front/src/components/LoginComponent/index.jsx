@@ -16,7 +16,7 @@ function LoginComponent() {
         setEyeIconSrc(showPassword ? eyeIconClose : eyeIconOpen);
     };
     return (
-        <>
+        <div className={styles.background}>
             <div className={styles.body}>
                 <div className={styles.welcome}>
                     <img src={logo} className={styles.logo} />
@@ -50,7 +50,7 @@ function LoginComponent() {
                     </a>
                 </div>
             </div>
-        </>
+        </div>
     );
 }
 

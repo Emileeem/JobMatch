@@ -4,7 +4,7 @@ import logo from "../../Img/logo.png"
 
 function CadastroComponent(){
     return (
-    <>
+    <div className={styles.background}>
     <div className={styles.body}>
         <div className={styles.inside}>
           <div className={styles.title}>
@@ -35,7 +35,7 @@ function CadastroComponent(){
           <button className={styles.button}> Cadastrar </button>
         </div>
     </div>
-    </>
+    </div>
     );
   }
   
