@@ -18,7 +18,7 @@ function CadastroComponent(){
     const [bairro, setBairro] = useState("");
     const [logradouro, setLogradouro] = useState("");
     const [complemento, setComplemento] = useState("");
-
+    const [confirmSenha, setConfirmSenha] = useState("");
     useEffect(() => {
         setNome(primeiroNome + " " + sobrenome);
     }, [primeiroNome, sobrenome]);
@@ -49,12 +49,18 @@ function CadastroComponent(){
               },
               body: JSON.stringify(usuario)
           });
-
-          if (response.ok) {
-              const data = await response.json();
-              console.log('Usuário cadastrado:', data);
-          } else {
-              console.error('Erro ao cadastrar usuário:', response.statusText);
+          if(senha === confirmSenha)
+          {
+            if (response.ok) {
+                const data = await response.json();
+                console.log('Usuário cadastrado:', data);
+            } else {
+                console.error('Erro ao cadastrar usuário:', response.statusText);
+            }
+          }
+          else
+          {
+            alert("As Senhas não Conferem!")
           }
       } catch (error) {
           console.error('Erro ao cadastrar usuário:', error);
@@ -165,6 +171,8 @@ function CadastroComponent(){
                 type="password"
                 placeholder="| Confirmar Senha"
                 className={styles.input} 
+                value={confirmSenha}
+                onChange={(e) => setConfirmSenha(e.target.value)}
               />
             </div>
           </div>

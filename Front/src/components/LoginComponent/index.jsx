@@ -35,6 +35,7 @@ function LoginComponent() {
             }
         } catch (error) {
             console.error("Erro ao fazer login:", error);
+            alert("Os dados não conferem!")
         }
     };
 
