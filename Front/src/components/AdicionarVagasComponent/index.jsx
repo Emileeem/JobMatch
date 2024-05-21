@@ -20,19 +20,19 @@ function AdicionarVagasComponent(props) {
         e.preventDefault();
         if (!formValid()) return;
         try {
-            const response = await axios.post("http://localhost:3000/api/taxa/", {
+            const response = await axios.post("http://localhost:3000/api/createtaxa/", {
                 titulo: titulo,
                 descricao: descricao,
                 dataInicio: dataInicio,
                 dataTermino: dataTermino,
                 valor: valor,
-                qtdTaxa: quantidadedePessoas, 
-                IDEndereco: 1, 
-                IDUsuario: 1 
+                qtdTaxa: quantidadedePessoas,
+                IDEndereco: 1,
+                IDUsuario: 1
             });
 
             console.log(response.data);
-            
+
         } catch (error) {
             console.error("Erro ao adicionar vagas:", error);
         }
@@ -92,35 +92,37 @@ function AdicionarVagasComponent(props) {
                 <Image className={styles.logo} src={logo} />
             </Link>
             <Image className={styles.img} src={decoration1} />
-            <div className={styles.card} {...props}>
-                <h1>Adicionar Vagas</h1>
-                <form className={styles.form}>
-                    <label className={styles.label}>
-                        Titulo
-                        <input className={styles.input} type="text" value={titulo} onChange={(e) => setTitulo(e.target.value)} />
-                    </label>
-                    <label className={styles.label}>
-                        Descrição
-                        <input className={styles.input} type="text" value={descricao} onChange={(e) => setDescricao(e.target.value)} />
-                    </label>
-                    <label className={styles.label}>
-                        Data Início
-                        <input className={styles.input} type="text" value={dataInicio} onChange={(e) => setDataInicio(e.target.value)} />
-                    </label>
-                    <label className={styles.label}>
-                        Data Termino
-                        <input className={styles.input} type="text" value={dataTermino} onChange={(e) => setDataTermino(e.target.value)} />
-                    </label>
-                    <label className={styles.label}>
-                        Valor
-                        <input className={styles.input} type="text" value={valor} onChange={(e) => setValor(e.target.value)} />
-                    </label>
-                    <label className={styles.label}>
-                        Quantidade de Pessoas
-                        <input className={styles.input} type="text" value={quantidadedePessoas} onChange={(e) => setQuantidadedePessoas(e.target.value)} />
-                    </label>
-                    <button className={styles.btn} onClick={handleSubmit} type="submit">Adicionar</button>
-                </form>
+            <div className={styles.alinha}>
+                <div className={styles.card} {...props}>
+                    <h1>Adicionar Vagas</h1>
+                    <form className={styles.form}>
+                        <label className={styles.label}>
+                            Titulo
+                            <input className={styles.input} type="text" value={titulo} onChange={(e) => setTitulo(e.target.value)} />
+                        </label>
+                        <label className={styles.label}>
+                            Descrição
+                            <input className={styles.input} type="text" value={descricao} onChange={(e) => setDescricao(e.target.value)} />
+                        </label>
+                        <label className={styles.label}>
+                            Data Início
+                            <input className={styles.input} type="text" value={dataInicio} onChange={(e) => setDataInicio(e.target.value)} />
+                        </label>
+                        <label className={styles.label}>
+                            Data Termino
+                            <input className={styles.input} type="text" value={dataTermino} onChange={(e) => setDataTermino(e.target.value)} />
+                        </label>
+                        <label className={styles.label}>
+                            Valor
+                            <input className={styles.input} type="text" value={valor} onChange={(e) => setValor(e.target.value)} />
+                        </label>
+                        <label className={styles.label}>
+                            Quantidade de Pessoas
+                            <input className={styles.input} type="text" value={quantidadedePessoas} onChange={(e) => setQuantidadedePessoas(e.target.value)} />
+                        </label>
+                        <button className={styles.btn} onClick={handleSubmit} type="submit">Adicionar</button>
+                    </form>
+                </div>
             </div>
         </>
     );
