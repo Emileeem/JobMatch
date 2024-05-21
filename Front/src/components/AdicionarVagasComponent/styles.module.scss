@@ -1,0 +1,81 @@
+.logo {
+  position: absolute;
+  left: 5%;
+  top: 4.5%;
+}
+
+.img {
+  position: absolute;
+  left: 5%;
+  top: 26%;
+  width: 1.7%;
+}
+
+.card {
+  position: relative;
+  background-color: #415a77a2;
+  width: 20vw;
+  height: auto;
+  border-radius: 4%;
+  padding: 20px; 
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  color: #0D1B2A; 
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-family: "Imprima", sans-serif;
+}
+
+.form {
+  width: 60%;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  margin-left: 0 !important;
+}
+
+.input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  border: 0.5px solid #0D1B2A;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  box-sizing: border-box; 
+  background-color: #E0E1DD;
+  color: #0D1B2A;
+  font-family: "Imprima", sans-serif;
+}
+
+.label {
+  display: contents;
+  margin: 5px 0;
+  position: relative;
+  width: 100%;
+  font-size: 20px;
+  font-family: "Imprima", sans-serif;
+}
+
+.label input {
+  width: 100%;
+}
+
+.label::before {
+  content: attr(data-label); 
+  position: absolute;
+  top: -20px; 
+  left: 0;
+}
+
+.btn{
+  margin-top: 8%;
+  width: 100%;
+  margin-bottom: 30px;
+  background-color: #0D1B2A;
+  color: #E0E1DD;
+}

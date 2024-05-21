@@ -1,4 +1,4 @@
-DB_NAME=
-DB_USER=
-DB_PASSWORD="com * no final"
+DB_NAME=JobMatch
+DB_USER=aluno
+DB_PASSWORD=aluno123
 DB_HOST=localhost

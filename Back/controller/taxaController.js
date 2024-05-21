@@ -11,7 +11,6 @@ export default class TaxaController {
         } catch (error) {
             return res.status(500).send({ error: error });
         }
-
     }
 
     static async getTaxaById(req, res) {
@@ -123,6 +122,7 @@ export default class TaxaController {
             return res.status(200).send({ message: "Taxa Deletada com sucesso", body: p })
         } catch (error) {
             return res.status(500).send({ message: error })
+
         }
     }
 

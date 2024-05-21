@@ -1,6 +1,7 @@
 import express from "express";
 import UserController from "../controller/userController.js"
 import TaxaController from "../controller/taxaController.js"
+import LoginController from "../controller/loginController.js"
 const routes = express.Router();
 
 // Users
@@ -9,6 +10,9 @@ routes.get("/api/user/:id", UserController.getUserById)
 routes.post("/api/user/", UserController.create)
 routes.delete("/api/user/:id", UserController.delete)
 routes.put("/api/user/:id", UserController.updateUsuario)
+
+//Login 
+routes.post('/api/login', LoginController.login)
 
 // Endereco
 routes.put("/api/user/endereco/:id", UserController.updateEndereco)

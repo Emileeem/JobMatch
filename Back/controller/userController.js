@@ -23,6 +23,7 @@ export default class UserController {
         }
     }
     
+    
     static async create(req, res) {
         const { nome, email, cpf, senha, dataNascimento, endereco } = req.body;
         console.log(nome, email, cpf, senha, dataNascimento, endereco)
@@ -161,4 +162,5 @@ export default class UserController {
     }
 
 }
+
 
