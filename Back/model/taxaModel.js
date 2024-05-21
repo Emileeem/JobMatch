@@ -17,11 +17,11 @@ export default db.define("Taxas", {
         allowNull: false,
     },
     DataInicio: {
-        type: Sequelize.BIGINT,
+        type: Sequelize.DATE,
         allowNull: false,
     },
     DataTermino: {
-        type: Sequelize.BIGINT,
+        type: Sequelize.DATE,
         allowNull: false,
     },
     Valor: {
@@ -46,7 +46,7 @@ export default db.define("Taxas", {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-            model: 'Endereco',
+            model: 'Enderecos',
             key: 'IDEndereco'
         }
     },
@@ -54,7 +54,7 @@ export default db.define("Taxas", {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-            model: 'Usuario',
+            model: 'Usuarios',
             key: 'IDUsuario'
         }
     },

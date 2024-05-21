@@ -27,7 +27,7 @@ export default db.define("Usuarios", {
     allowNull: false,
   },
   DataNascimento: {
-    type: Sequelize.BIGINT,
+    type: Sequelize.DATEONLY,
     allowNull: false,
   },
   createdAt: {
@@ -44,7 +44,7 @@ export default db.define("Usuarios", {
     type: Sequelize.INTEGER,
     allowNull: false,
     references: {
-        model: 'Endereco',
+        model: 'Enderecos',
         key: 'IDEndereco'
     }
   },

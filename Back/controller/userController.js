@@ -11,7 +11,6 @@ export default class UserController {
         } catch (error) {
             return res.status(500).send({ error: error });
         }
-        
     }
 
     static async getUserById(req, res) {
@@ -29,7 +28,10 @@ export default class UserController {
         console.log(nome, email, cpf, senha, dataNascimento, endereco)
         
         if (!nome || !email || !cpf || !senha || !dataNascimento || !endereco)
-        return
+            return res.status(400).send({message: "parametro vazio"})
+
+        if (nome.Lengh > 60 || email.Lengh > 50 || cpf.Lengh > 11)
+            return res.status(413).send({message: "Você ultrapassou o limite de caracter"})
         
         try {
             const endereco_user = 
@@ -57,7 +59,7 @@ export default class UserController {
             
             const createdUser = await userModel.create(obj);
             
-            return res.status(201).send({ message: "Pessoa inserida com sucesso", body: createdUser })
+            return res.status(201).send({ message: "Usuario cadastrado com sucesso", body: createdUser })
 
         } catch (error) {
             console.error("Erro ao criar usuário:", error);
@@ -74,14 +76,17 @@ export default class UserController {
         if (!nome || !email || !cpf || !senha || !dataNascimento || !IDEndereco)
             return
         
+        if (nome.Lengh > 60 || email.Lengh > 50 || cpf.Lengh > 11)
+            return res.status(413).send({message: "Você ultrapassou o limite de caracter"})
+        
         const endereco_user = await enderecoModel.findByPk(IDEndereco);
         console.log(endereco_user)
         if (!endereco_user) {
-            return res.status(404).json({ error: 'Endereco not found' });
+            return res.status(404).json({ error: 'Endereco não encontrado' });
         }
         
         if (!id)
-        return res.status(400).send({ message: "No id provider" })
+        return res.status(400).send({ message: "id não providenciado" })
         const IDUsuario = id
         
         try {
@@ -100,7 +105,7 @@ export default class UserController {
                     }
                 }
             );
-            return res.status(201).send({ message: "Usuario Editado com sucesso", body: user })
+            return res.status(201).send({ message: "Usuário Atualizado com sucesso", body: user })
         } catch (error) {
                 return res.status(500).send({ error: error })
             }
@@ -116,7 +121,7 @@ export default class UserController {
             return
         
         if (!id)
-        return res.status(400).send({ message: "No id provider" })
+        return res.status(400).send({ message: "id não providenciado" })
         const IDEndereco = id
         
         try {
@@ -135,7 +140,7 @@ export default class UserController {
                     }
                 }
             );
-            return res.status(201).send({ message: "Usuario Editado com sucesso", body: enderecos })
+            return res.status(201).send({ message: "Endereco atualiado com sucesso", body: enderecos })
         } catch (error) {
                 return res.status(500).send({ error: error })
             }
@@ -145,11 +150,11 @@ export default class UserController {
         const { id } = req.params;
         const IDUsuario = id
         if (!id)
-            return res.status(400).send({ message: "No id provider" });
+            return res.status(400).send({ message: "id não providenciado" });
 
         try {
             const p = await taxaModel.destroy({where: {IDUsuario}});
-            return res.status(200).send({ message: "User Deletado com sucesso", body: p })
+            return res.status(200).send({ message: "Usuário Deletado com sucesso", body: p })
         } catch (error) {
             return res.status(500).send({ message: error })
         }

@@ -29,7 +29,10 @@ export default class TaxaController {
         console.log(req.body)
 
         if (!titulo || !descricao || !dataTermino || !valor || !qtdTaxa)
-            return
+            return res.status(400).send({message: "parametro vazio"})
+
+        if (titulo.Lengh > 30 || descricao.Lengh > 255)
+            return res.status(413).send({message: "Você ultrapassou o limite de caracter"})
 
         const endereco = await enderecoModel.findByPk(IDEndereco);
         if (!endereco) {
@@ -72,16 +75,16 @@ export default class TaxaController {
 
         const endereco = await enderecoModel.findByPk(IDEndereco);
         if (!endereco) {
-            return res.status(404).json({ error: 'Endereco not found' });
+            return res.status(404).json({ error: 'Endereco não encontrado' });
         }
 
         const usuario = await userModel.findByPk(IDUsuario);
         if (!usuario) {
-            return res.status(404).json({ error: 'Endereco not found' });
+            return res.status(404).json({ error: 'Endereco não encontrado' });
         }
 
         if (!id)
-            return res.status(400).send({ message: "No id provider" })
+            return res.status(400).send({ message: "id não providenciado" })
         const IDTaxa = id
         
         try {
@@ -102,7 +105,7 @@ export default class TaxaController {
                     }
                 }
             );
-            return res.status(201).send({ message: "Taxa Editada com sucesso", body: p })
+            return res.status(201).send({ message: "Taxa Atualizada com sucesso", body: p })
         
             } catch (error) {
                 return res.status(500).send({ error: error })
@@ -113,7 +116,7 @@ export default class TaxaController {
         const { id } = req.params;
         const IDTaxa = id
         if (!id)
-            return res.status(400).send({ message: "No id provider" });
+            return res.status(400).send({ message: "id não providenciado" });
 
         try {
             const p = await taxaModel.destroy({where: {IDTaxa}});
