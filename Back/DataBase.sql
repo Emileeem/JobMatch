@@ -21,7 +21,7 @@ create table Usuarios (
     Email varchar(50) not null,
     Cpf varchar(11) not null,
     Senha varchar(50) not null,
-    DataNascimento long not null,
+    DataNascimento date not null,
 	createdAt timestamp default current_timestamp,
 	updatedAt timestamp default current_timestamp on update current_timestamp,
     IDEndereco int,
@@ -32,16 +32,14 @@ create table Taxas (
 	IDTaxa int primary key auto_increment,
     Titulo varchar(30) not null,
     Descricao varchar(255) not null,
-    DataInicio long not null,
-    DataTermino long,
+    DataInicio datetime not null,
+    DataTermino datetime,
     Valor double not null,
     QtdTaxa tinyint not null,
 	createdAt timestamp default current_timestamp,
     updatedAt timestamp default current_timestamp on update current_timestamp,
-    IDUsuario int,
-    IDEndereco int,
+    IDUsuario int not null,
+    IDEndereco int not null,
     foreign key (IDUsuario) references Usuarios(IDUsuario),
     foreign key (IDEndereco) references Enderecos(IDEndereco)
 );
-
-# drop database FreeLance;
