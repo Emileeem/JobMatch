@@ -22,9 +22,8 @@ export default class  LoginController {
     if (!user)
         return res.status(422).json({ message: "Cpf e/ou senha inválido" });
 
-    console.log(user.password != password)
-    console.log(user.senha)
-    if (user.password != password)
+    console.log(user.Senha != password)
+    if (user.Senha != password)
       return res.status(422).send({ message: "Cpf e/ou senha inválido" });
 
     try {
