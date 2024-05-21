@@ -28,6 +28,10 @@ export default db.define("Taxas", {
         type: Sequelize.DOUBLE,
         allowNull: false,
     },
+    StatusTaxa: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+    },
     QtdTaxa: {
         type: Sequelize.INTEGER,
         allowNull: false,

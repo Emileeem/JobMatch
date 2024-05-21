@@ -34,14 +34,12 @@ export default class TaxaController {
             return res.status(413).send({message: "Você ultrapassou o limite de caracter"})
 
         const endereco = await enderecoModel.findByPk(IDEndereco);
-        if (!endereco) {
+        if (!endereco)
             return res.status(404).json({ error: 'Endereco not found' });
-        }
 
         const usuario = await userModel.findByPk(IDUsuario);
-        if (!usuario) {
+        if (!usuario)
             return res.status(404).json({ error: 'Usuário not found' });
-        }
         
         try {
         const obj =
@@ -51,12 +49,13 @@ export default class TaxaController {
             DataInicio: dataInicio,
             DataTermino: dataTermino,
             Valor: valor,
+            StatusTaxa: 1,
             QtdTaxa: qtdTaxa,
             IDEndereco: endereco.IDEndereco,
             IDUsuario: usuario.IDUsuario
         }
-            const p = await taxaModel.create(obj);
-            return res.status(201).send({ message: "Taxa inserida com sucesso", body: p })
+            const taxa = await taxaModel.create(obj);
+            return res.status(201).send({ message: "Taxa inserida com sucesso", body: taxa })
 
         } catch (error) {
             return res.status(500).send({ error: error })
@@ -64,36 +63,35 @@ export default class TaxaController {
     }
 
     static async update(req, res) {    
-        const { titulo, descricao, dataTermino, dataInicio, valor, qtdTaxa, IDEndereco, IDUsuario } = req.body;
+        const { titulo, descricao, dataTermino, dataInicio, valor, statusTaxa, qtdTaxa, IDEndereco, IDUsuario } = req.body;
         console.log(req.body)
 
         const { id } = req.params;
 
-        if (!titulo || !descricao || !dataInicio || !dataTermino || !valor || !qtdTaxa)
+        if (!titulo || !descricao || !dataInicio || !dataTermino || !valor || !statusTaxa || !qtdTaxa )
             return
 
         const endereco = await enderecoModel.findByPk(IDEndereco);
-        if (!endereco) {
+        if (!endereco)
             return res.status(404).json({ error: 'Endereco não encontrado' });
-        }
 
         const usuario = await userModel.findByPk(IDUsuario);
-        if (!usuario) {
+        if (!usuario)
             return res.status(404).json({ error: 'Usuario não encontrado' });
-        }
 
         if (!id)
             return res.status(400).send({ message: "id não providenciado" })
         const IDTaxa = id
         
         try {
-            const p = await taxaModel.update(
+            const taxa = await taxaModel.update(
                 {
                     Titulo: titulo,
                     Descricao: descricao,
                     DataInicio: dataInicio,
                     DataTermino: dataTermino,
                     Valor: valor,
+                    StatusTaxa: statusTaxa,
                     QtdTaxa: qtdTaxa,
                     IDEndereco: endereco.IDEndereco,
                     IDUsuario: usuario.IDUsuario
@@ -104,7 +102,7 @@ export default class TaxaController {
                     }
                 }
             );
-            return res.status(201).send({ message: "Taxa Atualizada com sucesso", body: p })
+            return res.status(201).send({ message: "Taxa Atualizada com sucesso", body: taxa })
         
             } catch (error) {
                 return res.status(500).send({ error: error })
@@ -118,8 +116,8 @@ export default class TaxaController {
             return res.status(400).send({ message: "id não providenciado" });
 
         try {
-            const p = await taxaModel.destroy({where: {IDTaxa}});
-            return res.status(200).send({ message: "Taxa Deletada com sucesso", body: p })
+            const taxa = await taxaModel.destroy({where: {IDTaxa}});
+            return res.status(200).send({ message: "Taxa Deletada com sucesso", body: taxa })
         } catch (error) {
             return res.status(500).send({ message: error })
 

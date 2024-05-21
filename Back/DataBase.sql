@@ -36,6 +36,7 @@ create table Taxas (
     DataTermino datetime,
     Valor double not null,
     QtdTaxa tinyint not null,
+    StatusTaxa tinyint not null,
 	createdAt timestamp default current_timestamp,
     updatedAt timestamp default current_timestamp on update current_timestamp,
     IDUsuario int not null,
