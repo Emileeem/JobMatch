@@ -29,35 +29,38 @@ export default class TaxaController {
 
         if (!titulo || !descricao || !dataTermino || !valor || !qtdTaxa)
             return res.status(400).send({message: "parametro vazio"})
-
+        
         if (titulo.Lengh > 30 || descricao.Lengh > 255)
             return res.status(413).send({message: "Você ultrapassou o limite de caracter"})
-
-        const endereco = await enderecoModel.findByPk(IDEndereco);
-        if (!endereco)
-            return res.status(404).json({ error: 'Endereco not found' });
-
-        const usuario = await userModel.findByPk(IDUsuario);
-        if (!usuario)
-            return res.status(404).json({ error: 'Usuário not found' });
+        
+        // const endereco = await enderecoModel.findByPk(IDEndereco);
+        // if (!endereco)
+        //     return res.status(404).json({ error: 'Endereco not found' });
+        
+        // const usuario = await userModel.findByPk(IDUsuario);
+        // if (!usuario)
+        //     return res.status(404).json({ error: 'Usuário not found' });
         
         try {
-        const obj =
-        {
-            Titulo: titulo,
-            Descricao: descricao,
-            DataInicio: dataInicio,
-            DataTermino: dataTermino,
-            Valor: valor,
-            StatusTaxa: 1,
-            QtdTaxa: qtdTaxa,
-            IDEndereco: endereco.IDEndereco,
-            IDUsuario: usuario.IDUsuario
-        }
+            const obj =
+            {
+                Titulo: titulo,
+                Descricao: descricao,
+                DataInicio: dataInicio,
+                DataTermino: dataTermino,
+                Valor: valor,
+                StatusTaxa: 1,
+                QtdTaxa: qtdTaxa,
+                IDEndereco: 1,
+                IDUsuario: 1
+            }
+            console.log("Aqui antes de criar a taxa");
             const taxa = await taxaModel.create(obj);
+            console.log("Taxa criada:", taxa);
             return res.status(201).send({ message: "Taxa inserida com sucesso", body: taxa })
 
         } catch (error) {
+            console.error("Erro ao criar taxa:", error);
             return res.status(500).send({ error: error })
         }
     }

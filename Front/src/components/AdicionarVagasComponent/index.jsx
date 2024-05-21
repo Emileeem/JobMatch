@@ -8,82 +8,117 @@ import { useState } from 'react';
 import React from "react";
 import axios from "axios";
 
-function AdicionarVagasComponent(props) {
+function AdicionarVagasComponent() {
     const [titulo, setTitulo] = useState("");
     const [descricao, setDescricao] = useState("");
     const [dataInicio, setDataInicio] = useState("");
     const [dataTermino, setDataTermino] = useState("");
     const [valor, setValor] = useState("");
-    const [quantidadedePessoas, setQuantidadedePessoas] = useState("");
+    const [qtdTaxa, setQtdTaxa] = useState("");
 
-    async function handleSubmit(e) {
-        e.preventDefault();
-        if (!formValid()) return;
+    // async function handleSubmit(e) {
+    //     e.preventDefault();
+    //     if (!formValid()) return;
+    //     try {
+    //         const response = await axios.post("http://localhost:3000/api/taxa", {
+    //             titulo: titulo,
+    //             descricao: descricao,
+    //             dataInicio: dataInicio,
+    //             dataTermino: dataTermino,
+    //             valor: valor,
+    //             qtdTaxa: quantidadedePessoas,
+    //             IDEndereco: 1,
+    //             IDUsuario: 1
+    //         });
+
+    //         console.log(response.data);
+
+    //     } catch (error) {
+    //         console.error("Erro ao adicionar vagas:", error);
+    //     }
+    // }
+
+    // function formValid() {
+    //     if (titulo.trim() === "") {
+    //         setMessage("O campo não pode estar vazio.");
+    //         setShow(true);
+    //         setVariant("danger");
+    //         return false;
+    //     }
+    //     if (descricao.trim() === "") {
+    //         setMessage("O campo não pode estar vazio.");
+    //         setShow(true);
+    //         setVariant("danger");
+    //         return false;
+    //     }
+    //     if (dataInicio.trim() === "") {
+    //         setMessage("O campo não pode estar vazio.");
+    //         setShow(true);
+    //         setVariant("danger");
+    //         return false;
+    //     }
+    //     if (dataTermino.trim() === "") {
+    //         setMessage("O campo não pode estar vazio.");
+    //         setShow(true);
+    //         setVariant("danger");
+    //         return false;
+    //     }
+    //     if (valor.trim() === "") {
+    //         setMessage("O campo não pode estar vazio.");
+    //         setShow(true);
+    //         setVariant("danger");
+    //         return false;
+    //     }
+
+    //     if (quantidadedePessoas.trim() === "") {
+    //         setMessage("O campo não pode estar vazio.");
+    //         setShow(true);
+    //         setVariant("danger");
+    //         return false;
+    //     }
+    //     if (!descricao.trim()) {
+    //         setMessage("Sua descrição deve ser maior");
+    //         setShow(true);
+    //         setVariant("danger");
+    //         return false;
+    //     }
+    //     return true;
+    // }
+
+    const handleSubmit = async () => {
+        const taxa = {
+            titulo,
+            descricao,
+            dataInicio,
+            dataTermino,
+            valor,
+            qtdTaxa,
+            IDEndereco: 1,
+            IDUsuario: 1
+
+            // IDEndereco: endereco.IDEndereco,
+            // IDUsuario: usuario.IDUsuario
+        };
+
         try {
-            const response = await axios.post("http://localhost:3000/api/createtaxa/", {
-                titulo: titulo,
-                descricao: descricao,
-                dataInicio: dataInicio,
-                dataTermino: dataTermino,
-                valor: valor,
-                qtdTaxa: quantidadedePessoas,
-                IDEndereco: 1,
-                IDUsuario: 1
+            const response = await fetch('http://localhost:3000/api/taxa', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(taxa)
             });
 
-            console.log(response.data);
-
+            if (response.ok) {
+                const data = await response.json();
+                console.log('Taxa cadastrado:', data);
+            } else {
+                console.error('Erro ao adicionar taxa:', response.statusText);
+            }
         } catch (error) {
-            console.error("Erro ao adicionar vagas:", error);
+            console.error('Erro ao adicionar taxa:', error);
         }
-    }
-
-    function formValid() {
-        if (titulo.trim() === "") {
-            setMessage("O campo não pode estar vazio.");
-            setShow(true);
-            setVariant("danger");
-            return false;
-        }
-        if (descricao.trim() === "") {
-            setMessage("O campo não pode estar vazio.");
-            setShow(true);
-            setVariant("danger");
-            return false;
-        }
-        if (dataInicio.trim() === "") {
-            setMessage("O campo não pode estar vazio.");
-            setShow(true);
-            setVariant("danger");
-            return false;
-        }
-        if (dataTermino.trim() === "") {
-            setMessage("O campo não pode estar vazio.");
-            setShow(true);
-            setVariant("danger");
-            return false;
-        }
-        if (valor.trim() === "") {
-            setMessage("O campo não pode estar vazio.");
-            setShow(true);
-            setVariant("danger");
-            return false;
-        }
-
-        if (quantidadedePessoas.trim() === "") {
-            setMessage("O campo não pode estar vazio.");
-            setShow(true);
-            setVariant("danger");
-            return false;
-        }
-        if (!descricao.trim()) {
-            setMessage("Sua descrição deve ser maior");
-            setShow(true);
-            setVariant("danger");
-            return false;
-        }
-        return true;
-    }
+    };
 
     return (
         <>
@@ -93,9 +128,9 @@ function AdicionarVagasComponent(props) {
             </Link>
             <Image className={styles.img} src={decoration1} />
             <div className={styles.alinha}>
-                <div className={styles.card} {...props}>
+                <div className={styles.card}>
                     <h1>Adicionar Vagas</h1>
-                    <form className={styles.form}>
+                    <div className={styles.form}>
                         <label className={styles.label}>
                             Titulo
                             <input className={styles.input} type="text" value={titulo} onChange={(e) => setTitulo(e.target.value)} />
@@ -118,10 +153,10 @@ function AdicionarVagasComponent(props) {
                         </label>
                         <label className={styles.label}>
                             Quantidade de Pessoas
-                            <input className={styles.input} type="text" value={quantidadedePessoas} onChange={(e) => setQuantidadedePessoas(e.target.value)} />
+                            <input className={styles.input} type="text" value={qtdTaxa} onChange={(e) => setQtdTaxa(e.target.value)} />
                         </label>
-                        <button className={styles.btn} onClick={handleSubmit} type="submit">Adicionar</button>
-                    </form>
+                        <button className={styles.btn} onClick={handleSubmit} >Adicionar</button>
+                    </div>
                 </div>
             </div>
         </>

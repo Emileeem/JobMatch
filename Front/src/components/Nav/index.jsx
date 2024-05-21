@@ -5,6 +5,8 @@ import exit from "./exit.png";
 import add from "./add.png";
 import React from 'react';
 import { Link } from 'react-router-dom';
+import decoration1 from './decoration1.png';
+import logo from './logosemname.png';
 
 function Nav() {
     return (
@@ -19,6 +21,11 @@ function Nav() {
             </div>
 
             <Image className={styles.exit} src={exit} />
+
+            <Link to="/home">
+                                <Image className={styles.logo} src={logo} />
+                            </Link>
+                            <Image className={styles.img} src={decoration1} />
         </>
     );
 }
