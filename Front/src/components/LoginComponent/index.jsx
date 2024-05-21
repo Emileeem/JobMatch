@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-
-import styles from "./style.module.scss"
-import logo from "../../Img/logo.png"
+import styles from "./style.module.scss";
+import logo from "../../Img/logo.png";
 import eyeIconOpen from '../../Img/olhoAb.png';
 import eyeIconClose from '../../Img/olhoFec.png';
 import axios from 'axios';
@@ -11,6 +10,9 @@ function LoginComponent() {
     const [showPassword, setShowPassword] = useState(false);
     const [inputType, setInputType] = useState('password');
     const [eyeIconSrc, setEyeIconSrc] = useState(eyeIconClose);
+    const [cpf, setCpf] = useState("");
+    const [password, setPassword] = useState("");
+    const navigate = useNavigate();
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
@@ -18,43 +20,29 @@ function LoginComponent() {
         setEyeIconSrc(showPassword ? eyeIconClose : eyeIconOpen);
     };
 
-    const [cpf, setCpf] = useState("");
-    const [password, setPassword] = useState("");
-
-    async function handleSubmit(e) {
-        e.preventDefault();
-    
-        if (!formValid()) return;
-    
-        const json = {
-            cpf,
-            password,
-        };
-    
-        console.log(json);
-    
+    const handleSubmit = async () => {
         try {
-            var res = await axios.post("http://localhost:3000/api/login", json);
-            console.log(res);
-            navigate("/home")
-        } catch (error){
-            console.log(error);
+            const response = await axios.post('http://localhost:3000/api/login', {
+                cpf,
+                password
+            });
+            if (response.status === 200) {
+                console.log("Usuário logado com sucesso!");
+                // Redirecionar para a página principal ou outra página desejada
+                navigate('/home');
+            } else {
+                console.error("Erro ao fazer login:", response.data.message);
+            }
+        } catch (error) {
+            console.error("Erro ao fazer login:", error);
         }
-    }
-    
-      function formValid() {
-        if (!cpf || !password) {
-          return false;
-        }
-        return true;
-      }
+    };
 
-      
     return (
         <div className={styles.background}>
             <div className={styles.body}>
                 <div className={styles.welcome}>
-                    <img src={logo} className={styles.logo} />
+                    <img src={logo} className={styles.logo} alt="Logo" />
                     <h2> BEM VINDO</h2>
                     <div className={styles.left}>
                         <h1> Novo Login </h1>
@@ -62,7 +50,6 @@ function LoginComponent() {
                     </div>
                     <a className={styles.button} href='/register'> Criar Conta </a>
                 </div>
-
                 <div className={styles.logar}>
                     <h1> Faça o seu Login </h1>
                     <input 
@@ -73,7 +60,6 @@ function LoginComponent() {
                         onChange={(e) => setCpf(e.target.value)}
                     />
                     <div className={styles.inputDiv}>
-
                         <input 
                             type={inputType} 
                             placeholder="| ******" 

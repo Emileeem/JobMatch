@@ -3,8 +3,8 @@ import userModel from '../model/userModel.js';
 export default class  LoginController {
 
   static async login(req, res) {    
-    const { cpf, password } = json;
-    // const { email, password } = req.body;
+    // const { cpf, password } = json;
+    const { cpf, password } = req.body;
     console.log(cpf)
     console.log(password)
     
@@ -16,10 +16,14 @@ export default class  LoginController {
 
     const user = await userModel.findOne({ cpf: cpf });
 
+    console.log(user)
+    console.log(!user)
+
     if (!user)
         return res.status(422).json({ message: "Cpf e/ou senha inválido" });
 
-
+    console.log(user.password != password)
+    console.log(user.senha)
     if (user.password != password)
       return res.status(422).send({ message: "Cpf e/ou senha inválido" });
 
