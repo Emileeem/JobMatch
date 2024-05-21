@@ -40,7 +40,7 @@ export default class TaxaController {
 
         const usuario = await userModel.findByPk(IDUsuario);
         if (!usuario) {
-            return res.status(404).json({ error: 'Endereco not found' });
+            return res.status(404).json({ error: 'Usuário not found' });
         }
         
         try {
@@ -79,7 +79,7 @@ export default class TaxaController {
 
         const usuario = await userModel.findByPk(IDUsuario);
         if (!usuario) {
-            return res.status(404).json({ error: 'Endereco não encontrado' });
+            return res.status(404).json({ error: 'Usuario não encontrado' });
         }
 
         if (!id)
