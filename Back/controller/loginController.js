@@ -5,8 +5,7 @@ export default class  LoginController {
   static async login(req, res) {    
     // const { cpf, password } = json;
     const { cpf, password } = req.body;
-    console.log(cpf)
-    console.log(password)
+
     
     if (!cpf)
     return res.status(422).json({ message: "O cpf é obrigatório" });
@@ -16,8 +15,6 @@ export default class  LoginController {
 
     const user = await userModel.findOne({ cpf: cpf });
 
-    console.log(user)
-    console.log(!user)
 
     if (!user)
         return res.status(422).json({ message: "Cpf e/ou senha inválido" });
