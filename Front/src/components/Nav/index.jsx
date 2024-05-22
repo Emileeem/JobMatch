@@ -3,6 +3,7 @@ import styles from './styles.module.scss';
 import Image from "react-bootstrap/Image";
 import sair from "../../Img/exit.png";
 import { Link } from 'react-router-dom';
+import decoration1 from './decoration1.png';
 import menu from "../../Img/menu.png";
 import { useNavigate } from "react-router-dom";
 
@@ -28,6 +29,9 @@ function Nav() {
             </div>
             <Image className={styles.exit} src={sair} onClick={exit}/>
             <Image className={styles.menu} src={menu} onClick={toggleNavVisibility} />
+
+            <Image className={styles.exit} src={exit} />
+
         </>
     );
 }

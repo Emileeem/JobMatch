@@ -1,5 +1,6 @@
 .logo {
   position: absolute;
+  margin-top: 10%;
   left: 5%;
   top: 4.5%;
 }
@@ -7,14 +8,15 @@
 .img {
   position: absolute;
   left: 5%;
-  top: 26%;
+  top: 50%;
   width: 1.7%;
 }
 
 .card {
+  margin-top: 2%;
   position: relative;
   background-color: #415a77a2;
-  width: 20vw;
+  width: 50vw;
   height: auto;
   border-radius: 4%;
   padding: 20px; 
@@ -23,6 +25,7 @@
   justify-content: flex-start;
   align-items: center;
   color: #0D1B2A; 
+  left: -22%;
 }
 
 h1 {
@@ -33,6 +36,7 @@ h1 {
 }
 
 .form {
+  margin-top: 10%;
   width: 60%;
   display: flex !important;
   flex-direction: column !important;
@@ -78,4 +82,35 @@ h1 {
   margin-bottom: 30px;
   background-color: #0D1B2A;
   color: #E0E1DD;
+}
+
+.alinha{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: auto;
+  margin-top: 10%;
+  margin-left: 32%; 
+  width: 19vw;
+}
+
+.notification{
+  color: white;
+  background-color: red;
+}
+
+@media (width <= 760px)
+{
+  .card {
+    left: -27px;
+    width: 23vh;
+    position: relative;
+  }
+
+  .img {
+    display: none;
+  }
+  .logo {
+    display: none;
+  }
 }

@@ -136,7 +136,7 @@ body {
    }
 
    .logo {
-    margin: 7%;
+    margin: 10%;
    }
 
    .paragraph {
@@ -149,6 +149,11 @@ body {
 
    .alinha {
     width: 96%;
+   }
+
+   .container {
+    display: flex;
+    justify-content: space-between;
    }
 }
 

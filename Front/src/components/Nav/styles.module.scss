@@ -36,7 +36,7 @@
 
 .menu {
   width: 40px;
-  margin-top: 4%;
+  margin-top: 7%;
 }
 @media (width <= 760px)
 {
@@ -54,6 +54,18 @@
     display: flex;
     width: 30px;
     height: 30px;
+    margin: 0;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+   }
+   .img {
+    display: none;
+   }
+
+   .navContainer {
+    position: relative;
+    left: 35%;
    }
 }
 

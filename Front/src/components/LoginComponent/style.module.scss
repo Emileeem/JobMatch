@@ -103,7 +103,7 @@ h1 {
     width: 30px;
     position: absolute;
     top: 25px;
-    right: 15px;
+    right: 13%;
     transform: translate(-50%, -50%);
 }
 
@@ -130,6 +130,9 @@ h1 {
 
 @media (width <= 760px)
 {
+    .body {
+        width: 98%;
+    }
     .background {
         background-color: #E0E1DD;
         background-image: none;
