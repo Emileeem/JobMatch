@@ -21,9 +21,13 @@ routes.put("/api/user/endereco/:id", UserController.updateEndereco)
 
 // Taxas
 routes.get("/api/taxa/", TaxaController.getAllTaxa)
+routes.get("/api/taxa/status1", TaxaController.getAllStatus1)
+routes.get("/api/taxa/status2", TaxaController.getAllStatus2)
+routes.get("/api/taxa/status3", TaxaController.getAllStatus3)
 routes.get("/api/taxa/:id", TaxaController.getTaxaById)
-routes.post("/api/createtaxa/", TaxaController.create)
+routes.post("/api/taxa/", TaxaController.create)
 routes.delete("/api/taxa/:id", TaxaController.delete)
 routes.put("/api/taxa/:id", TaxaController.update)
+routes.put("/api/taxa/status/:id", TaxaController.updateStatus)
 
 export { routes as default };

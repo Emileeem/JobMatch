@@ -92,9 +92,9 @@ body {
   flex-direction: column;
   align-items: flex-start;
   width: auto;
-  margin-top: 16%;
-  margin-left: 65%; 
-  width: 19vw;
+  margin-top: 22%;
+  margin-left: 61%;
+  width: 28vw;
 }
 
 .container{
@@ -128,4 +128,33 @@ body {
     margin-left: 0; 
   }
 }
+
+@media (width <= 768px)
+{
+   .img {
+    display: none;
+   }
+
+   .logo {
+    margin: 10%;
+   }
+
+   .paragraph {
+    margin: 7%;
+   }
+
+   .nome {
+    margin-top: 65%;
+   }
+
+   .alinha {
+    width: 96%;
+   }
+
+   .container {
+    display: flex;
+    justify-content: space-between;
+   }
+}
+
 

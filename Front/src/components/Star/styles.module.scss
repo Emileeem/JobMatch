@@ -8,3 +8,11 @@
 .star {
   width: 1vw;
 }
+
+@media (width <= 760px)
+{
+  .star {
+    width: 20px;
+    height: 20px;
+  }
+}
