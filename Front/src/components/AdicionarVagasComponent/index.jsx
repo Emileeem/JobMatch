@@ -5,7 +5,7 @@ import decoration1 from './decoration1.png';
 import logo from './logosemname.png';
 import Nav from '../Nav';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 function AdicionarVagasComponent() {
     const [titulo, setTitulo] = useState("");
@@ -15,6 +15,7 @@ function AdicionarVagasComponent() {
     const [valor, setValor] = useState("");
     const [qtdTaxa, setQtdTaxa] = useState("");
     const [notification, setNotification] = useState("");
+    const history = useHistory();
 
     const handleSubmit = async () => {
         const formatDate = (dateString) => {
@@ -42,19 +43,25 @@ function AdicionarVagasComponent() {
         };
 
         try {
-            const response = await axios.post('http://localhost:3000/api/taxa', taxa);
+            const response = await fetch('http://localhost:3000/api/taxa', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(taxa)
+            });
 
-            if (response.ok) {
-                const data = await response.json();
-                console.log('Taxa cadastrada:', data);
+            if (response.status === 201) {
+                history.push('/vagas');
             } else {
-                console.error('Erro ao adicionar taxa:', response.statusText);
+                const errorData = await response.json();
+                setNotification(errorData.message || "Erro ao adicionar taxa");
             }
         } catch (error) {
             console.error('Erro ao adicionar taxa:', error);
+            setNotification("Erro ao adicionar taxa");
         }
     };
-
     return (
         <>
             <Nav />
@@ -64,7 +71,7 @@ function AdicionarVagasComponent() {
             <Image className={styles.img} src={decoration1} />
             <div className={styles.alinha}>
                 <div className={styles.card}>
-                    <div className={styles.notification}>{notification}</div>
+                    {notification && <div className={styles.notification}>{notification}</div>}
                     <h1>Adicionar Vagas</h1>
                     <div className={styles.form}>
                         <label className={styles.label}>
@@ -91,7 +98,9 @@ function AdicionarVagasComponent() {
                             Quantidade de Pessoas
                             <input className={styles.input} type="text" value={qtdTaxa} onChange={(e) => setQtdTaxa(e.target.value)} />
                         </label>
-                        <button className={styles.btn} onClick={handleSubmit} >Adicionar</button>
+                        {/* <button className={styles.btn} onClick={handleSubmit} >Adicionar</button> */}
+                        <Link to="/vagas" ><button className={styles.btn} onClick={handleSubmit} >Adicionar</button></Link>
+
                     </div>
                 </div>
             </div>

@@ -36,7 +36,7 @@ function TaxasAgendadasComponent() {
         <>
             <Container>
                 <Row>
-                    <h1 className={styles.vagas}>Taxas Agendadas</h1>
+                    <h1 className={styles.vagas}>Taxas Concluidas</h1>
                     {taxas.map((taxa) => (
                         <Col key={taxa.IDTaxa} xs={12} md={4}>
                             <div className={styles.vaga}>
