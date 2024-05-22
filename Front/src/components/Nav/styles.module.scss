@@ -34,6 +34,23 @@
   width: 2.9vw;
 }
 
+.menu {
+  display: none;
+}
+
+@media (width <= 760px)
+{
+   .exit {
+    width: 30px;
+    height: 30px;
+   }
+
+   .menu {
+    display: flex;
+    width: 30px;
+    height: 30px;
+   }
+}
 
 
 
