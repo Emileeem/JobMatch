@@ -93,8 +93,8 @@ body {
   align-items: flex-start;
   width: auto;
   margin-top: 22%;
-  margin-left: 110%; 
-  width: 19vw;
+  margin-left: 61%;
+  width: 28vw;
 }
 
 .container{
@@ -128,4 +128,28 @@ body {
     margin-left: 0; 
   }
 }
+
+@media (width <= 768px)
+{
+   .img {
+    display: none;
+   }
+
+   .logo {
+    margin: 7%;
+   }
+
+   .paragraph {
+    margin: 7%;
+   }
+
+   .nome {
+    margin-top: 65%;
+   }
+
+   .alinha {
+    width: 96%;
+   }
+}
+
 

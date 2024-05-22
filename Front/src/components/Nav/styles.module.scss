@@ -40,6 +40,12 @@
 
 @media (width <= 760px)
 {
+  .navContainer {
+    background-color: #E0E1DD;
+    border: 1px solid #778da9;
+    z-index: 1;
+  }
+
    .exit {
     width: 30px;
     height: 30px;
