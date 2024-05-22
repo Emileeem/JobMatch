@@ -22,6 +22,17 @@ export default class UserController {
             res.status(500).json({ error: error })
         }
     }
+
+    static async getUserEnderecoById(req, res) {
+        const { id } = req.params;
+        try {
+            const user = await userModel.findByPk(id);
+            const endereco = await enderecoModel.findByPk(id);
+            return res.status(200).json({user, endereco});
+        } catch (error) {
+            res.status(500).json({ error: error })
+        }
+    }
     
     
     static async create(req, res) {
@@ -64,6 +75,65 @@ export default class UserController {
 
         } catch (error) {
             console.error("Erro ao criar usuário:", error);
+            return res.status(500).send({ error: error })
+        }
+    }
+
+    static async updateUsuarioEndereco(req, res){
+
+        const { nome, email, cpf, senha, dataNascimento ,endereco} = req.body;
+        console.log(nome, email, cpf, senha, endereco)
+
+        const { id } = req.params;
+
+        if (!nome || !email || !cpf || !senha)
+            return
+        
+        if (nome.Lengh > 60 || email.Lengh > 50 || cpf.Lengh > 11)
+            return res.status(413).send({message: "Você ultrapassou o limite de caracter"})
+        
+        if (!id)
+        return res.status(400).send({ message: "Id não providenciado" })
+        const IDUsuario = id
+        const IDEndereco = id
+
+        console.log("1")
+        try {
+            const user = await userModel.update(
+                {
+                    Nome: nome,
+                    Email: email,
+                    Cpf: cpf,
+                    Senha: senha,
+                    IDEndereco: IDEndereco,
+                },
+                {
+                    where: {
+                        IDUsuario: IDUsuario
+                    }
+                }
+            );
+            console.log(user)
+            console.log(IDEndereco)
+            const enderecos = await enderecoModel.update({
+                Pais: endereco.pais,
+                UF: endereco.uf, 
+                Municipio: endereco.municipio,
+                Cep: endereco.cep,
+                Bairro: endereco.bairro,
+                Logradouro: endereco.logradouro,
+                Complemento: endereco.complemento
+            },
+            {
+                where: {
+                    IDEndereco: IDEndereco
+                }
+            }
+        );
+            console.log(endereco)
+            console.log("2")
+            return res.status(201).send({ message: "Usuário e Endereco Atualizado com sucesso", body: user, enderecos })
+        } catch (error) {
             return res.status(500).send({ error: error })
         }
     }

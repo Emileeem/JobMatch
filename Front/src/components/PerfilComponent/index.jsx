@@ -11,7 +11,8 @@ function PerfilComponent() {
     const [sobrenome, setSobrenome] = useState("")
     const [nomeCompleto, setNomeCompleto] = useState("")
     const [email, setEmail] = useState("")
-    const [dataNasc, setDataNasc] = useState(new Date)
+    const [cpf, setCpf] = useState("")
+    const [dataNasc, setDataNasc] = useState("")
     const [pais, setPais] = useState("")
     const [uf, setUF] = useState("")
     const [municipio, setMunicipio] = useState("")
@@ -19,28 +20,73 @@ function PerfilComponent() {
     const [bairro, setBairro] = useState("")
     const [complemento, setComplemento] = useState("");
     const [senha, setSenha] = useState("");
-    const [confirmarSenha, setConfirmarSenha] = useState("");
     const [user, setUser] = useState([]);
 
     async function getUser() {
-        // const i = 1;
-        const res = await axios.get("http://localhost:3000/api/user/1");
-        setUser(res.data);
-        console.log(res.data);
-        setNome("mateus")
+        try {
+            const res = await axios.get("http://localhost:3000/api/enderecouser/1");
+            console.log(res)
+
+            const user = res.data.user;
+            const endereco = res.data.endereco;
+            setUser(user);
+            setNomeCompleto(user.Nome);
+            const nomeArray = user.Nome.split(' ');
+            const nome = nomeArray[0];
+            const sobrenome = nomeArray.slice(1).join(' ');
+    
+            setNome(nome);
+            setSobrenome(sobrenome);
+            setEmail(user.Email);
+            setCpf(user.Cpf)
+            setDataNasc(user.DataNascimento);
+            setPais(endereco.Pais);
+            setUF(endereco.UF);
+            setMunicipio(endereco.Municipio);
+            setCEP(endereco.Cep);
+            setBairro(endereco.Bairro);
+            setComplemento(endereco.Complemento);
+            setComplemento(user.Senha);
+
+        } catch (error) {
+            console.error("Erro ao buscar o usuário:", error);
+        }
     }
 
-    async function UpdateUser(nome, sobrenome, email, dataNasc, pais, uf, municipio, cep, bairro, complemento, senha, confirmarSenha) {
-        // const i = 1;
-        console.log(nome)
-        const res = await axios.put("http://localhost:3000/api/user/1");
-        setUser(res.data);
-        console.log(res.data);
+    async function UpdateUser(id, nome, sobrenome, email, cpf, senha, pais, uf, municipio, cep, bairro, complemento) {
+        try {
+            const nomeCompleto = nome + " " + sobrenome;
+            // `http://localhost:3000/api/enderecouser/${id}`,
+            const res = await axios.put(`http://localhost:3000/api/enderecouser/1`, {
+                nome,
+                email,
+                cpf,
+                senha,
+                endereco: {
+                    pais,
+                    uf,
+                    municipio,
+                    cep,
+                    bairro,
+                    complemento
+                },
+            });
+            location.reload(true);
+            const user = res.data.user;
+            const endereco = res.data.endereco;
+
+            console.log("Teste")
+            console.log(res)
+
+        } catch (error) {
+            console.error("Erro ao buscar o usuário:", error);
+        }
     }
 
     useEffect(() => {
         getUser();
       }, []);
+
     return (
         <>
             <div>
@@ -54,26 +100,28 @@ function PerfilComponent() {
                 <div className={styles["wrap-inputs"]}>
                     <div className={styles.inputs}>
                         <input type="text" placeholder="| Nome" id="Nome" value={nome} onChange={(event) => setNome(event.target.value)} className={styles.input} />
-                        <input type="date" placeholder="| DataNasc" id="DataNasc" className={styles.input} onChange={(event) => setDataNasc(event.target.value)}/>
-                        <input type="text" placeholder="| Município" id="Municipio" className={styles.input} onChange={(event) => setMunicipio(event.target.value)}/>
-                        <input type="text" placeholder="| Complemento" id="Complemento" className={styles.input} onChange={(event) => setComplemento(event.target.value)}/>
+                        <input type="text" placeholder="| CPF" id="Cpf" value={cpf} onChange={(event) => setCpf(event.target.value)} className={styles.input} />
+                        <input type="text" placeholder="| Uf" id="UF" value={uf} className={styles.input} onChange={(event) => setUF(event.target.value)}/>
+                        <input type="text" placeholder="| Bairro" id="Bairro" value={bairro} className={styles.input} onChange={(event) => setBairro(event.target.value)}/>                       
                     </div>
                     <div className={styles.inputs}>
                         
-                        <input type="text" placeholder="| Sobrenome" id="Sobrenome" className={styles.input} onChange={(event) => setSobrenome(event.target.value)}/>
-                        <input type="text" placeholder="| País" id="Pais" className={styles.input} onChange={(event) => setPais(event.target.value)}/>
-                        <input type="number" placeholder="| CEP" id="Cep" className={styles.input} onChange={(event) => setCEP(event.target.value)}/>
-                        <input type="password" placeholder="| Senha" id="Senha" className={styles.input} onChange={(event) => setSenha(event.target.value)}/>
+                        <input type="text" placeholder="| Sobrenome" id="Sobrenome" value={sobrenome} className={styles.input} onChange={(event) => setSobrenome(event.target.value)}/>
+                        <input type="date" placeholder="| DataNasc" id="DataNasc" value={dataNasc} className={styles.input} onChange={(event) => setDataNasc(event.target.value)}/>
+                        <input type="text" placeholder="| Município" id="Municipio" value={municipio} className={styles.input} onChange={(event) => setMunicipio(event.target.value)}/>
+                        <input type="text" placeholder="| Complemento" id="Complemento" value={complemento} className={styles.input} onChange={(event) => setComplemento(event.target.value)}/>
+
                     </div>
                     <div className={styles.inputs}>
-                    <input type="text" placeholder="| Email" id="Email" className={styles.input} onChange={(event) => setEmail(event.target.value)}/>
-                        <input type="text" placeholder="| Uf" id="UF" className={styles.input} onChange={(event) => setUF(event.target.value)}/>
-                        <input type="text" placeholder="| Bairro" id="Bairro" className={styles.input} onChange={(event) => setBairro(event.target.value)}/>
-                        <input type="password" placeholder="| Confirmar Senha" id="ConfirmarSenha" className={styles.input} onChange={(event) => setConfirmarSenha(event.target.value)}/>
+                        <input type="text" placeholder="| Email" id="Email" value={email} className={styles.input} onChange={(event) => setEmail(event.target.value)}/>
+                        <input type="text" placeholder="| País" id="Pais" value={pais} className={styles.input} onChange={(event) => setPais(event.target.value)}/>
+                        <input type="number" placeholder="| CEP" id="Cep" value={cep} className={styles.input} onChange={(event) => setCEP(event.target.value)}/>
+                        <input type="password" placeholder="| Senha" id="Senha" value={senha} className={styles.input} onChange={(event) => setSenha(event.target.value)}/>
+                       
                     </div>
                 </div>
                 <div className={styles.buttons}>
-                    <button className={styles.button} onClick={() =>UpdateUser(nome, sobrenome, email, dataNasc, pais, uf, municipio, cep, bairro, complemento, senha, confirmarSenha)}> Salvar Alterações </button>
+                    <button className={styles.button} onClick={() =>UpdateUser(nome, sobrenome, email, cpf, senha, pais, uf, municipio, cep, bairro, complemento)}> Salvar Alterações </button>
                 </div>
             </div>
         </>

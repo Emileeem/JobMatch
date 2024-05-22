@@ -15,6 +15,8 @@ routes.put("/api/user/:id", UserController.updateUsuario)
 routes.post('/api/login', LoginController.login)
 
 // Endereco
+routes.get("/api/enderecouser/:id", UserController.getUserEnderecoById)
+routes.put("/api/enderecouser/:id", UserController.updateUsuarioEndereco)
 routes.put("/api/user/endereco/:id", UserController.updateEndereco)
 
 // Taxas
