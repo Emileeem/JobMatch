@@ -1,12 +1,11 @@
+import React, { useState } from 'react';
 import styles from './styles.module.scss';
 import Image from 'react-bootstrap/Image';
 import decoration1 from './decoration1.png';
 import logo from './logosemname.png';
 import Nav from '../Nav';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
-import React from "react";
-import axios from "axios";
+import axios from 'axios';
 
 function AdicionarVagasComponent() {
     const [titulo, setTitulo] = useState("");
@@ -15,103 +14,39 @@ function AdicionarVagasComponent() {
     const [dataTermino, setDataTermino] = useState("");
     const [valor, setValor] = useState("");
     const [qtdTaxa, setQtdTaxa] = useState("");
-
-    // async function handleSubmit(e) {
-    //     e.preventDefault();
-    //     if (!formValid()) return;
-    //     try {
-    //         const response = await axios.post("http://localhost:3000/api/taxa", {
-    //             titulo: titulo,
-    //             descricao: descricao,
-    //             dataInicio: dataInicio,
-    //             dataTermino: dataTermino,
-    //             valor: valor,
-    //             qtdTaxa: quantidadedePessoas,
-    //             IDEndereco: 1,
-    //             IDUsuario: 1
-    //         });
-
-    //         console.log(response.data);
-
-    //     } catch (error) {
-    //         console.error("Erro ao adicionar vagas:", error);
-    //     }
-    // }
-
-    // function formValid() {
-    //     if (titulo.trim() === "") {
-    //         setMessage("O campo não pode estar vazio.");
-    //         setShow(true);
-    //         setVariant("danger");
-    //         return false;
-    //     }
-    //     if (descricao.trim() === "") {
-    //         setMessage("O campo não pode estar vazio.");
-    //         setShow(true);
-    //         setVariant("danger");
-    //         return false;
-    //     }
-    //     if (dataInicio.trim() === "") {
-    //         setMessage("O campo não pode estar vazio.");
-    //         setShow(true);
-    //         setVariant("danger");
-    //         return false;
-    //     }
-    //     if (dataTermino.trim() === "") {
-    //         setMessage("O campo não pode estar vazio.");
-    //         setShow(true);
-    //         setVariant("danger");
-    //         return false;
-    //     }
-    //     if (valor.trim() === "") {
-    //         setMessage("O campo não pode estar vazio.");
-    //         setShow(true);
-    //         setVariant("danger");
-    //         return false;
-    //     }
-
-    //     if (quantidadedePessoas.trim() === "") {
-    //         setMessage("O campo não pode estar vazio.");
-    //         setShow(true);
-    //         setVariant("danger");
-    //         return false;
-    //     }
-    //     if (!descricao.trim()) {
-    //         setMessage("Sua descrição deve ser maior");
-    //         setShow(true);
-    //         setVariant("danger");
-    //         return false;
-    //     }
-    //     return true;
-    // }
+    const [notification, setNotification] = useState("");
 
     const handleSubmit = async () => {
+        const formatDate = (dateString) => {
+            const [day, month, year] = dateString.split('/');
+            return `${year}-${month}-${day}`;
+        };
+
+        const currentDate = new Date();
+        const startDate = new Date(dataInicio);
+        if (startDate < currentDate) {
+            setNotification("A data de início deve ser igual ou maior que a data atual!");
+            return;
+        }
+
         const taxa = {
             titulo,
             descricao,
-            dataInicio,
-            dataTermino,
+            dataInicio: formatDate(dataInicio),
+            dataTermino: formatDate(dataTermino),
             valor,
+            statusTaxa: 1,
             qtdTaxa,
             IDEndereco: 1,
             IDUsuario: 1
-
-            // IDEndereco: endereco.IDEndereco,
-            // IDUsuario: usuario.IDUsuario
         };
 
         try {
-            const response = await fetch('http://localhost:3000/api/taxa', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(taxa)
-            });
+            const response = await axios.post('http://localhost:3000/api/taxa', taxa);
 
             if (response.ok) {
                 const data = await response.json();
-                console.log('Taxa cadastrado:', data);
+                console.log('Taxa cadastrada:', data);
             } else {
                 console.error('Erro ao adicionar taxa:', response.statusText);
             }
@@ -129,6 +64,7 @@ function AdicionarVagasComponent() {
             <Image className={styles.img} src={decoration1} />
             <div className={styles.alinha}>
                 <div className={styles.card}>
+                    <div className={styles.notification}>{notification}</div>
                     <h1>Adicionar Vagas</h1>
                     <div className={styles.form}>
                         <label className={styles.label}>

@@ -1,54 +1,70 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './styles.module.scss';
 import Image from 'react-bootstrap/Image';
-import decoration1 from './decoration1.png';
-import logo from './logosemname.png';
-import { Link } from 'react-router-dom';
-import Star from '../Star';
+import imagemcard from './Cadastro.png';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import axios from 'axios';
+import Star from '../Star';
 
-const items = [...Array(5).keys()];
+function TaxasAgendadasComponent() {
+    const [taxas, setTaxas] = useState([]);
 
-function TaxasConcluidasComponent() {
-    const [activeIndex, setActiveIndex] = useState();
+    useEffect(() => {
+        const fetchTaxas = async () => {
+            try {
+                const response = await axios.get('http://localhost:3000/api/taxa/status3');
+                setTaxas(response.data.data);
+            } catch (error) {
+                console.error('Erro ao buscar taxas:', error);
+            }
+        };
 
-    const onClickStar = (index) => {
-        setActiveIndex((oldState) => (oldState === index ? undefined : index));
+        fetchTaxas();
+    }, []);
+
+    const handleStarClick = (taxaIndex, starIndex) => {
+        setTaxas((prevTaxas) => {
+            const updatedTaxas = [...prevTaxas];
+            updatedTaxas[taxaIndex].avaliacao = starIndex + 1; // +1 para considerar avaliação de 1 a 5
+            return updatedTaxas;
+        });
     };
 
     return (
         <>
             <Container>
                 <Row>
-                    <h1 className={styles.vagas}>Concluídas:</h1>
-                    {[...Array(3).keys()].map((rowIndex) => (
-                        <React.Fragment key={`row_${rowIndex}`}>
-                            {[...Array(3).keys()].map((colIndex) => (
-                                <Col key={`col_${colIndex}`} xs={12} md={4}>
-                                    <Link to="/home">
-                                        <Image className={styles.logo} src={logo} />
-                                    </Link>
-                                    <Image className={styles.img} src={decoration1} />
-                                    <div className={styles.vaga}>
-                                        <div className={styles.alinha}>
-                                            <b className={styles.label}>Barman - 20/05/2023</b>
-                                            <div className={styles.container}>
-                                                {items.map((index) => (
-                                                    <Star
-                                                        onClick={() => onClickStar(index)}
-                                                        key={`star_${index}`}
-                                                        isActive={index <= (activeIndex ?? -1)}
-                                                    />
-                                                ))}
-                                            </div>
-                                            <div className={styles.card}></div>
+                    <h1 className={styles.vagas}>Taxas Agendadas</h1>
+                    {taxas.map((taxa) => (
+                        <Col key={taxa.IDTaxa} xs={12} md={4}>
+                            <div className={styles.vaga}>
+                                <div className={styles.alinha}>
+                                    <b className={styles.label}>{taxa.Titulo}</b>
+                                    <div className={styles.container}>
+                                        {[...Array(5).keys()].map((starIndex) => (
+                                            <Star
+                                                key={`star_${starIndex}`}
+                                                isActive={starIndex < taxa.avaliacao}
+                                                onClick={() => handleStarClick(taxas.indexOf(taxa), starIndex)}
+                                            />
+                                        ))}
+                                    </div>
+                                    <div className={styles.card}>
+                                        <Image className={styles.imagemcard} src={imagemcard} />
+                                        <p className={styles.titulo}>{taxa.Titulo}</p>
+                                        <div className={styles.resto}>
+                                            <p>{taxa.Descricao}</p>
+                                            <p>Início: {new Date(taxa.DataInicio).toLocaleDateString()}</p>
+                                            <p>Término: {new Date(taxa.DataTermino).toLocaleDateString()}</p>
+                                            <p>Valor: {taxa.Valor}</p>
+                                            <p>Quantidade: {taxa.QtdTaxa}</p>
                                         </div>
                                     </div>
-                                </Col>
-                            ))}
-                        </React.Fragment>
+                                </div>
+                            </div>
+                        </Col>
                     ))}
                 </Row>
             </Container>
@@ -56,4 +72,4 @@ function TaxasConcluidasComponent() {
     );
 }
 
-export default TaxasConcluidasComponent;
+export default TaxasAgendadasComponent;

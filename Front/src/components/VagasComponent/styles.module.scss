@@ -91,3 +91,23 @@
 h2{
     font-size: 15px;
 }
+
+.but{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    width: 100%;
+}
+
+.button{
+    background-color: #778DA9;
+    color: #E0E1DD;
+    font-size: 15px;
+    font-weight: 900 !important;
+    border: 0;
+}
+
+.button:hover {
+    background-color: #E0E1DD;
+    color: #0D1B2A;
+  }

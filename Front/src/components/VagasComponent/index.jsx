@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import styles from './styles.module.scss';
 import Image from 'react-bootstrap/Image';
 import imagemcard from './Cadastro.png';
-import { Link } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -15,7 +14,7 @@ function VagasComponent() {
     useEffect(() => {
         const fetchTaxas = async () => {
             try {
-                const response = await axios.get('http://localhost:3000/api/taxa');
+                const response = await axios.get('http://localhost:3000/api/taxa/status1');
                 setTaxas(response.data.data);
             } catch (error) {
                 console.error('Erro ao buscar taxas:', error);
@@ -31,6 +30,24 @@ function VagasComponent() {
             updatedTaxas[taxaIndex].avaliacao = starIndex + 1; // +1 para considerar avaliação de 1 a 5
             return updatedTaxas;
         });
+    };
+
+    const handleCandidatar = async (taxaID) => {
+        const data = { status: 2 };
+        console.log(data);
+
+        try {
+            const response = await axios.put(`http://localhost:3000/api/taxa/status/${taxaID}`, data);
+        console.log(taxaID);
+            
+            if (response.status === 201) {
+                console.log('Status da taxa atualizado com sucesso.');
+            } else {
+                console.error('Erro ao atualizar status da taxa:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Erro ao atualizar status da taxa:', error);
+        }
     };
 
     return (
@@ -61,6 +78,11 @@ function VagasComponent() {
                                             <p>Término: {new Date(taxa.DataTermino).toLocaleDateString()}</p>
                                             <p>Valor: {taxa.Valor}</p>
                                             <p>Quantidade: {taxa.QtdTaxa}</p>
+                                            <div className={styles.but}>
+                                                <button className={styles.button} onClick={() => handleCandidatar(taxa.IDTaxa)}>
+                                                    Me candidatar
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
