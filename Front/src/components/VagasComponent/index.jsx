@@ -40,6 +40,7 @@ function VagasComponent() {
                                                         onClick={() => onClickStar(index)}
                                                         key={`star_${index}`}
                                                         isActive={index <= (activeIndex ?? -1)}
+                                                        className={styles.star}
                                                     />
                                                 ))}
                                             </div>

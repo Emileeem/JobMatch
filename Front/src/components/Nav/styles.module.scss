@@ -35,15 +35,14 @@
 }
 
 .menu {
-  display: none;
+  width: 40px;
+  margin-top: 4%;
 }
-
 @media (width <= 760px)
 {
   .navContainer {
-    background-color: #E0E1DD;
-    border: 1px solid #778da9;
-    z-index: 1;
+    display: flex;
+    flex-direction: column;
   }
 
    .exit {

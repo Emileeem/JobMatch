@@ -46,3 +46,31 @@
     font-weight: bold !important;
     color: #0D1B2A;
 }
+
+@media (width <= 760px)
+{
+    .vagas {
+        margin-left: 10%;
+    }
+    .logo {
+        margin-top: 25%;
+    }
+    .img {
+        display: none;
+    }
+    .alinha {
+        width: 100% !important;
+    }
+    .card {
+        width: 100%;
+    }
+    .container {
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+      }
+
+    .label {
+        margin-top: 10%;
+    }
+}
