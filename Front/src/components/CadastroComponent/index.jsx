@@ -1,6 +1,7 @@
 import styles from "./style.module.scss"
 import logo from "../../Img/logo.png"
 import React, { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
 
 function CadastroComponent(){
     const [sobrenome, setSobrenome] = useState("");
@@ -72,7 +73,9 @@ function CadastroComponent(){
     <div className={styles.body}>
         <div className={styles.inside}>
           <div className={styles.title}>
+          <Link to="/">
             <img src={logo} className={styles.logo} />
+            </Link>
           <h1>
             Cadastre-se
           </h1>
