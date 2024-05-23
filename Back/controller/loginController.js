@@ -15,6 +15,7 @@ export default class  LoginController {
 
     const user = await userModel.findOne({ cpf: cpf });
 
+    console.log(user)
 
     if (!user)
         return res.status(422).json({ message: "Cpf e/ou senha inválido" });

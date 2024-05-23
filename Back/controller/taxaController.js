@@ -93,17 +93,15 @@ export default class TaxaController {
         if (titulo.Lengh > 30 || descricao.Lengh > 255)
             return res.status(413).send({ message: "Você ultrapassou o limite de caracter" })
 
+        // const endereco = await enderecoModel.findByPk(IDEndereco);
+        // if (!endereco)
+        //     return res.status(404).json({ error: 'Endereco not found' });
+
+        // const usuario = await userModel.findByPk(IDUsuario);
+        // if (!usuario)
+        //     return res.status(404).json({ error: 'Usuário not found' });
+
         try {
-            const lastEndereco = await enderecoModel.findOne({
-                order: [['IDEndereco', 'DESC']]
-            });
-            const newIDEndereco = lastEndereco ? lastEndereco.IDEndereco + 1 : 1;
-
-            const lastUsuario = await userModel.findOne({
-                order: [['IDUsuario', 'DESC']]
-            });
-            const newIDUsuario = lastUsuario ? lastUsuario.IDUsuario + 1 : 1;
-
             const obj =
             {
                 Titulo: titulo,
@@ -111,10 +109,10 @@ export default class TaxaController {
                 DataInicio: dataInicio,
                 DataTermino: dataTermino,
                 Valor: valor,
-                StatusTaxa: statusTaxa,
+                StatusTaxa: 1,
                 QtdTaxa: qtdTaxa,
-                IDEndereco: newIDEndereco,
-                IDUsuario: newIDUsuario
+                IDEndereco: 1,
+                IDUsuario: 1
             }
             console.log("Aqui antes de criar a taxa");
             const taxa = await taxaModel.create(obj);

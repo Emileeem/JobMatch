@@ -1,0 +1,66 @@
+
+{
+    "nome": "Murilo Kauan Socek",
+    "email": "murilo@gmail.com",
+    "cpf" : "123456789",
+    "senha": "123456",
+    "endereco" : {
+        "pais" : "Brasil",
+        "uf" : "PR",
+        "municipio" : "Quitandinha",
+        "cep" : "83840000",
+        "bairro" : "Centro",
+        "logradouro" : "Avenida Fernandes de Andrade",
+        "complemento" : "Casa"
+    }
+}
+
+{
+    "nome": "Mais Uma Vez",
+    "email": "Teste",
+    "cpf" : "Teste2",
+    "senha": "haha1214",
+    "dataNascimento" : "2024-03-24",
+    "IDEndereco" : 1
+}
+
+{
+    "titulo": "titulo",
+    "descricao": "descricao",
+    "dataInicio": 96234,
+    "dataTermino": 235613,
+    "valor": 300.60,
+    "statusTaxa": 2,
+    "qtdTaxa": 1,
+    "IDEndereco": 1,
+    "IDUsuario": 1
+}
+
+{
+    "titulo": "Vaga Para Treinador de Futebol",
+    "descricao": "Essa vaga é para ser treinador do Coritiba Foot Ball Club.",
+    "dataInicio": "2024-05-20 10:30:00",
+    "dataTermino": "2024-05-25 22:30:00",
+    "valor": 150.60,
+    "qtdTaxa": 1,
+    "IDEndereco": 1,
+    "IDUsuario": 1
+}
+
+{
+    "nome": "Murilo Kauan Socek",
+    "email": "murilo@gmail.com",
+    "cpf" : "123456789",
+    "senha": "123456",
+    "dataNascimento" : "2004-07-23",
+    "endereco" : {
+        "pais" : "Brasil",
+        "uf" : "PR",
+        "municipio" : "Quitandinha",
+        "cep" : "83840000",
+        "bairro" : "Centro",
+        "logradouro" : "Avenida Fernandes de Andrade",
+        "complemento" : "Casa"
+    }
+
+}
