@@ -7,6 +7,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import axios from 'axios';
 import Star from '../Star';
+import logo from './logosemname.png';
+import { Link } from 'react-router-dom';
 
 function TaxasAgendadasComponent() {
     const [taxas, setTaxas] = useState([]);
@@ -34,6 +36,9 @@ function TaxasAgendadasComponent() {
 
     return (
         <>
+         <Link to="/home">
+                <Image className={styles.logo} src={logo} />
+            </Link>
             <Container>
                 <Row>
                     <h1 className={styles.vagas}>Taxas Concluidas</h1>

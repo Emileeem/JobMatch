@@ -12,16 +12,16 @@ body {
 .logo {
   position: absolute;
   left: 5%;
-  top: 4.5%;
+  top: -45%;
 }
 
+  
 .img {
   position: absolute;
   left: 5%;
   top: 26%;
   width: 1.7%;
 }
-
 .nome {
   position: absolute;
   left: 9%;
@@ -37,7 +37,7 @@ body {
   top: calc(35% + 30px);
   width: 30%;
   line-height: 1.5;
-  font-size: 2vw; 
+  font-size: 2vw;
   text-align: justify;
 }
 
@@ -45,7 +45,7 @@ body {
   color: #E0E1DD;
   display: flex;
   justify-content: center;
-  align-items: center; 
+  align-items: center;
 }
 
 .button {
@@ -60,101 +60,228 @@ body {
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  transition: background-color 0.3s, border-color 0.3s; 
-  border: 2px solid transparent; 
+  transition: background-color 0.3s, border-color 0.3s;
+  border: 2px solid transparent;
 }
 
 .button:hover {
   background-color: #415a77a2;
-  border-color: #E0E1DD; 
+  border-color: #E0E1DD;
 }
 
 .button:active {
   background-color: #415a77a2;
-  border-color: #E0E1DD; 
+  border-color: #E0E1DD;
 }
 
 .card {
-  background-color: #415a77a2;
-  width: 100%;
-  height: 50vh;
+  background-color: #0D1B2A;
+  width: 15vw;
+  height: auto;
   border-radius: 10%;
+  position: relative;
+  overflow: hidden;
+  color: #E0E1DD;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-left: auto; /* Move the card to the right */
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: #0D1B2A;
+  border-radius: 10% 10% 0 0;
+}
+
+.imagemcard {
+  width: 100%;
+  height: auto;
+  border-radius: 10% 10% 0 0;
+}
+
+.titulo {
+  font-size: 20px;
+  margin-top: 10px;
+  color: #ffffff;
+  font-weight: bold;
+  text-align: center;
+}
+
+.resto {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0 10px;
+  font-size: 14px;
+}
+
+.resto p {
+  margin: 5px 0;
+  font-size: 16px;
+  color: #E0E1DD;
+}
+
+.resto p:first-child {
+  font-weight: bold;
+}
+
+.resto p:last-child {
+  margin-bottom: 0;
 }
 
 .label {
-  font-weight: bold;
-  font-size: 1.3vw; 
+  font-weight: 700;
+  font-size: 22px;
   margin: 0;
 }
 
 .alinha {
+  margin-top: 20px;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: auto;
-  margin-top: 22%;
-  margin-left: 61%;
-  width: 28vw;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  margin-left: 0 !important;
 }
 
-.container{
-  align-items: center
+.container {
+  align-items: flex-start !important;
+}
+
+.vaga {
+  margin-top: 45px;
+}
+
+.vagas {
+  margin-top: 100px;
+  font-size: 40px !important;
+  font-weight: bold !important;
+  color: #0D1B2A;
+}
+
+h2 {
+  font-size: 15px;
+}
+
+.but {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  width: 100%;
+}
+
+.button {
+  background-color: #778DA9;
+  color: #E0E1DD;
+  font-size: 15px;
+  font-weight: 900 !important;
+  border: 0;
+}
+
+.button:hover {
+  background-color: #E0E1DD;
+  color: #0D1B2A;
+}
+
+.button1 {
+  background-color: #778DA9;
+  color: #E0E1DD;
+  font-size: 15px;
+  font-weight: 900 !important;
+  border: 0;
+  padding: 4%;
+  margin-bottom: 10% !important;
 }
 
 @media screen and (max-width: 768px) {
   .img, .nome, .paragraph, .button, .card {
-    position: static; 
-    width: 100%; 
+    position: static;
+    width: 100%;
     left: 0;
     top: auto;
   }
 
   .img {
-    margin-top: 20px; 
+    margin-top: 20px;
   }
 
   .paragraph {
-    width: auto; 
-    font-size: 18px; 
+    width: auto;
+    font-size: 18px;
   }
 
   .button {
-    width: 100%; 
-    margin-top: 20px; 
+    width: 100%;
+    margin-top: 20px;
   }
 
   .alinha {
-    align-items: center; 
-    margin-left: 0; 
+    align-items: center;
+    margin-left: 0;
   }
 }
 
-@media (width <= 768px)
-{
-   .img {
+@media (width <= 768px) {
+  .img {
     display: none;
-   }
+  }
 
-   .logo {
+  .logo {
     margin: 10%;
-   }
+  }
 
-   .paragraph {
+  .paragraph {
     margin: 7%;
-   }
+  }
 
-   .nome {
+  .nome {
     margin-top: 65%;
-   }
+  }
 
-   .alinha {
+  .alinha {
     width: 96%;
-   }
+  }
 
-   .container {
+  .container {
     display: flex;
     justify-content: space-between;
-   }
+  }
 }
 
+.vagas {
+  margin-left: 10%;
+}
 
+.logo {
+  margin-top: 25%;
+}
+
+.img {
+  display: none;
+}
+
+.alinha {
+  width: 30% !important;
+  position: relative;
+  left: 70%;
+  margin-top: 3%;
+}
+
+.card {
+  width: 100%;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.label {
+  margin-top: 10%;
+}

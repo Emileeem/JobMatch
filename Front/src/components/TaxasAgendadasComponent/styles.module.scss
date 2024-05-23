@@ -1,7 +1,14 @@
+.logo {
+    position: absolute;
+    margin-top: 10%;
+    left: 5%;
+    top: -10% !important;
+  }
+
 .card {
-    background-color: #0D1B2A;
-    width: 15vw;
-    height: auto;
+    background-color: #0D1B2A !important;
+    width: 16vw;
+    height: 30%  !important;
     border-radius: 10%;
     position: relative;
     overflow: hidden;
@@ -100,7 +107,7 @@ h2{
 }
 
 .button{
-    background-color: #778DA9;
+    background-color: #778DA9 !important;
     color: #E0E1DD;
     font-size: 15px;
     font-weight: 900 !important;

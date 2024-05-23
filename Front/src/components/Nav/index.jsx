@@ -1,9 +1,8 @@
-import React, { useState } from 'react'; // Importe o useState
+import React, { useState } from 'react';
 import styles from './styles.module.scss';
 import Image from "react-bootstrap/Image";
 import sair from "../../Img/exit.png";
 import { Link } from 'react-router-dom';
-import decoration1 from './decoration1.png';
 import menu from "../../Img/menu.png";
 import { useNavigate } from "react-router-dom";
 
@@ -16,8 +15,9 @@ function Nav() {
     };
 
     const exit = () => {
-        navigate("/")
-    }
+        navigate("/");
+    };
+
     return (
         <>
             <div className={styles.navContainer} style={{ display: isNavVisible ? 'block' : 'none' }}>
@@ -27,11 +27,8 @@ function Nav() {
                 <Link to="/taxasConcluidas" className={styles.navItem}>Taxas Concluídas</Link>
                 <Link to="/adicionarVagas" className={styles.navItem}>Adicionar Vagas</Link>
             </div>
-            <Image className={styles.exit} src={sair} onClick={exit}/>
+            <Image className={styles.exit} src={sair} onClick={exit} />
             <Image className={styles.menu} src={menu} onClick={toggleNavVisibility} />
-
-            <Image className={styles.exit} src={exit} />
-
         </>
     );
 }

@@ -7,6 +7,9 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import axios from 'axios';
 import Star from '../Star'; // Importe o componente Star
+import logo from './logosemname.png';
+import { Link } from 'react-router-dom';
+
 
 function VagasComponent() {
     const [taxas, setTaxas] = useState([]);
@@ -39,7 +42,7 @@ function VagasComponent() {
         try {
             const response = await axios.put(`http://localhost:3000/api/taxa/status/${taxaID}`, data);
         console.log(taxaID);
-            
+
             if (response.status === 201) {
                 console.log('Status da taxa atualizado com sucesso.');
             } else {
@@ -49,9 +52,11 @@ function VagasComponent() {
             console.error('Erro ao atualizar status da taxa:', error);
         }
     };
-
     return (
         <>
+         <Link to="/home">
+                <Image className={styles.logo} src={logo} />
+            </Link>
             <Container>
                 <Row>
                     <h1 className={styles.vagas}>Taxas disponíveis</h1>

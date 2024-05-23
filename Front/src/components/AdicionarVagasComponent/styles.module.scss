@@ -2,13 +2,13 @@
   position: absolute;
   margin-top: 10%;
   left: 5%;
-  top: 4.5%;
+  top: -12%;
 }
 
 .img {
   position: absolute;
   left: 5%;
-  top: 50%;
+  top: 30%;
   width: 1.7%;
 }
 
@@ -25,7 +25,7 @@
   justify-content: flex-start;
   align-items: center;
   color: #0D1B2A; 
-  left: -22%;
+  left: -78%;
 }
 
 h1 {
@@ -99,18 +99,18 @@ h1 {
   background-color: red;
 }
 
-@media (width <= 760px)
-{
-  .card {
-    left: -27px;
-    width: 23vh;
-    position: relative;
-  }
+// @media (width <= 760px)
+// {
+//   .card {
+//     left: -27px;
+//     width: 23vh;
+//     position: relative;
+//   }
 
-  .img {
-    display: none;
-  }
-  .logo {
-    display: none;
-  }
-}
+//   .img {
+//     display: none;
+//   }
+//   .logo {
+//     display: none;
+//   }
+// }
