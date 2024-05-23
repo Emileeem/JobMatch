@@ -81,7 +81,7 @@ export default class UserController {
 
     static async updateUsuarioEndereco(req, res){
 
-        const { nome, email, cpf, senha, dataNascimento ,endereco} = req.body;
+        const { nome, email, cpf, senha ,endereco} = req.body;
         console.log(nome, email, cpf, senha, endereco)
 
         const { id } = req.params;
@@ -97,7 +97,6 @@ export default class UserController {
         const IDUsuario = id
         const IDEndereco = id
 
-        console.log("1")
         try {
             const user = await userModel.update(
                 {
@@ -131,7 +130,6 @@ export default class UserController {
             }
         );
             console.log(endereco)
-            console.log("2")
             return res.status(201).send({ message: "Usuário e Endereco Atualizado com sucesso", body: user, enderecos })
         } catch (error) {
             return res.status(500).send({ error: error })
