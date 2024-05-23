@@ -5,7 +5,7 @@ export default function Perfil() {
   return (
     <>
       <Nav />
-      <PerfilComponent />
+      <PerfilComponent/>
     </>
   );
 }
