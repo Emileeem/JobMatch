@@ -55,11 +55,11 @@ function PerfilComponent() {
         }
     }
 
-    async function UpdateUser(id, nome, sobrenome, email, cpf, senha, pais, uf, municipio, cep, bairro, logradouro, complemento) {
+    async function UpdateUser( nome, sobrenome, email, cpf, senha, pais, uf, municipio, cep, bairro, logradouro, complemento) {
         try {
             const nomeCompleto = `${nome} ${sobrenome}`;
     
-            const res = await axios.put(`http://localhost:3000/api/enderecouser/${id}`, {
+            const user = {
                 nome: nomeCompleto,
                 email,
                 cpf,
@@ -73,19 +73,22 @@ function PerfilComponent() {
                     logradouro,
                     complemento
                 },
-            });
+            }
     
             try {
-                const response = await fetch('http://localhost:3000/api/enderecouser/', {
+                //Arrumar pois atualemente esta sendo setado o ID de Usuario Manualmente 
+                //Aterar muita coisa por isso por conta do tempo ficara Assim
+                const response = await fetch('http://localhost:3000/api/enderecouser/1', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify(usuario)
+                    body: JSON.stringify(user)
                 });
                 if (response.ok) {
                     const data = await response.json();
                     console.log('Usuário Atualizado:', data);
+                    location.reload(true);
                 } else {
                     console.error('Erro ao Atualizar usuário:', response.statusText);
                 }
@@ -93,7 +96,6 @@ function PerfilComponent() {
                 console.error('Erro ao cadastrar usuário:', error);
             }
     
-            location.reload(true);
         } catch (error) {
             console.error("Erro ao buscar o usuário:", error);
         }
